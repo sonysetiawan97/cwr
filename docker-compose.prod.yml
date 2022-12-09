@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  portamento_cwr:
+    build:
+      context: "."
+    restart: always
+    environment:
+      - PORT
+      - SECRET
+      - NORM_ADAPTER=mysql
+      - NORM_MYSQL_HOST=mysql
+      - NORM_MYSQL_USER=portamento_cwr
+      - NORM_MYSQL_PASSWORD
+      - NORM_MYSQL_DATABASE=portamento_cwr
+      - DEBUG
+      - NAMESPACE
+      - LOG_PATH
+      - DOCUMENTATION_BASE_URL
+    networks:
+      - serv_default
+    volumes:
+      - log:/log
+
+
+networks:
+  serv_default:
+    external: true
+  
+volumes:
+  log:
+    external: true

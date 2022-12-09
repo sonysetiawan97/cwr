@@ -1,0 +1,7 @@
+version: "1"
+stages:
+  migrate:
+    files: [ "docker-compose.prod.yml", "docker-compose.migrate.yml" ]
+  deploy:
+    files: [ "docker-compose.prod.yml" ]
+    detach: true

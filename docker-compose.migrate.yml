@@ -1,0 +1,6 @@
+version: "3"
+
+services:
+  portamento_license:
+    restart: "no"
+    command: [ "npm", "run", "migrate", "--", "up" ]
