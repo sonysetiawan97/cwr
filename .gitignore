@@ -1,5 +1,3 @@
 node_modules
-.tmp
-umzug.json
-log/
-.DS_STORE
+/lib
+src/__files__
