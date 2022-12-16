@@ -10,17 +10,17 @@ export const filename: Array<Table> = [
   },
   {
     name: 'version',
-    type: 'varchar',
+    type: 'VARCHAR',
     length: 12,
   },
   {
     name: 'input_type',
-    type: 'varchar',
+    type: 'VARCHAR',
     length: 25,
   },
   {
     name: 'tag',
-    type: 'varchar',
+    type: 'VARCHAR',
     length: 25,
   },
   {
@@ -40,7 +40,7 @@ export const filename: Array<Table> = [
   },
   {
     name: 'field',
-    type: 'varchar',
+    type: 'VARCHAR',
     length: 50,
   },
 ];

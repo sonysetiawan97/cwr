@@ -1,6 +1,6 @@
 import { Table } from '../model/model';
 
-export const lookup: Array<Table> = [
+export const mapper: Array<Table> = [
   {
     name: 'id',
     type: 'INTEGER',
@@ -12,11 +12,6 @@ export const lookup: Array<Table> = [
     name: 'version',
     type: 'varchar',
     length: 12,
-  },
-  {
-    name: 'line',
-    type: 'varchar',
-    length: 5,
   },
   {
     name: 'group_name',
@@ -57,11 +52,6 @@ export const lookup: Array<Table> = [
     name: 'field',
     type: 'varchar',
     length: 50,
-  },
-  {
-    name: 'options',
-    type: 'text',
-    nullable: true,
   },
   {
     name: 'description',

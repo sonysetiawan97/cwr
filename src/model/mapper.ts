@@ -1,9 +1,8 @@
 import { Options } from './model';
 
-export interface LookUp {
+export interface Mapper {
   id: number;
   version: string;
-  line: string;
   group_name: string;
   input_type: string;
   is_required: boolean;
@@ -12,13 +11,11 @@ export interface LookUp {
   end_char: number;
   size: number;
   field: string;
-  options?: Array<Options>;
   description?: string;
 }
 
-export interface LookUpSeeder {
+export interface MapperSeeder {
   version: string;
-  line: string;
   group_name: string;
   input_type: string;
   is_required: boolean;
@@ -27,6 +24,5 @@ export interface LookUpSeeder {
   end_char: number;
   size: number;
   field: string;
-  options?: string;
   description?: string;
 }

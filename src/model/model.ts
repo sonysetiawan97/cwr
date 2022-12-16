@@ -1,22 +1,13 @@
-export interface Params {
+export interface Where {
   [key: string]: any;
+}
+export interface Params {
+  where?: Where;
 }
 
 export interface Options {
   tag: string;
   name: string;
-}
-
-export interface Mapping {
-  id: number;
-  name: string;
-  label: string;
-}
-
-export interface Rule {
-  id: number;
-  name: string;
-  rule: string;
 }
 
 export interface Table {

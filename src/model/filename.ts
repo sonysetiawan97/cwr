@@ -19,7 +19,7 @@ export interface FilenameSeeder {
   field: string;
 }
 
-export interface FileNaming {
+export interface FileNamingV21 {
   identity: string;
   year: string;
   sequence: string;
@@ -28,11 +28,33 @@ export interface FileNaming {
   version: string;
 }
 
-export const FormFileNaming: FileNaming = {
+export const FormFileNamingV21: FileNamingV21 = {
   identity: '',
   year: '',
   sequence: '',
   society: '',
   receiver: '',
   version: '',
+};
+
+export interface FileNamingV30 {
+  identity: string;
+  year: string;
+  file_number: string;
+  submitter: string;
+  recepient: string;
+  version: string;
+  revision: string;
+  ext: string;
+}
+
+export const FormFileNamingV30: FileNamingV30 = {
+  identity: '',
+  year: '',
+  file_number: '',
+  submitter: '',
+  recepient: '',
+  version: '',
+  revision: '',
+  ext: '',
 };

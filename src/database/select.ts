@@ -7,11 +7,30 @@ const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err: any) => {
   if (err) throw err;
 });
 
-export const fetch = (table: string, params?: Params) => {
+export const getData = (table: string, params?: Params) => {
   return new Promise((resolve, reject) => {
     db.serialize(() => {
+      const queries: Array<string> = [];
       const select = `SELECT * FROM ${table}`;
-      db.all(select, [], (err: unknown, rows: unknown) => {
+      queries.push(select);
+
+      if (params) {
+        const { where } = params;
+        if (where) {
+          const whereQuery: Array<string> = [];
+          Object.entries(where).map(([key, value]) => {
+            whereQuery.push(`${key} = '${value}'`);
+          });
+
+          const whereQueryJoin = whereQuery.join(' AND ');
+
+          queries.push(`WHERE ${whereQueryJoin}`);
+        }
+      }
+
+      const query = queries.join(' ');
+
+      db.all(query, [], (err: unknown, rows: unknown) => {
         if (err) reject(err);
         resolve(rows);
       });

@@ -1,4 +1,4 @@
-import { lookup } from '../seeder/lookup';
+import { mapper } from '../seeder/mapper';
 import { filename } from '../seeder/filename';
 
 const sqlite3 = require('sqlite3').verbose();
@@ -9,7 +9,7 @@ const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err: any) => {
 });
 
 const tables = {
-  lookup,
+  mapper,
   filename,
 };
 

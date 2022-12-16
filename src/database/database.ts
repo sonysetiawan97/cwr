@@ -1,4 +1,4 @@
-import { lookup } from '../table/lookup';
+import { mapper } from '../table/mapper';
 import { filename } from '../table/filename';
 
 const sqlite3 = require('sqlite3').verbose();
@@ -10,7 +10,7 @@ const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err: any) => {
 
 const tables = {
   filename,
-  lookup,
+  mapper,
 };
 
 db.serialize(() => {

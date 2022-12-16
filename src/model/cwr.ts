@@ -1,9 +1,12 @@
-import { FileNaming, FormFileNaming } from './filename';
+import { FileNamingV21, FileNamingV30 } from './filename';
+import { ControlRecord } from './control_record';
 
 export interface cwr {
-  fileNaming: FileNaming;
+  file_naming: FileNamingV21 | FileNamingV30 | null;
+  control_record: ControlRecord | null;
 }
 
 export const cwrForm: cwr = {
-  fileNaming: FormFileNaming,
+  file_naming: null,
+  control_record: null,
 };

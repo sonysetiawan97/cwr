@@ -1,47 +1,75 @@
-import { fetch } from './database/select';
 import { cwr, cwrForm } from './model/cwr';
-import { Filename, FileNaming, FormFileNaming } from './model/filename';
+import { FileNamingV21, FileNamingV30 } from './model/filename';
 import * as fs from 'fs';
+import { checkVersion, decodeFileName } from './library/filename';
+import { decodeGrh, decodeGrt, decodeHdr, decodeTrl } from './library/control_record';
+import { versionAvailable } from './enum/version';
+import {
+  GRHVer21,
+  GRHVer300,
+  GRTVer21,
+  GRTVer300,
+  HDRVer21,
+  HDRVer300,
+  TRLVer21,
+  TRLVer300,
+} from './model/control_record';
 
 export const decoderFullPath = async (path: string): Promise<cwr> => {
   return new Promise(async (resolve, reject) => {
-    const file = fs.readFileSync(path);
+    const file: string = fs.readFileSync(path, 'utf-8');
 
     const pathArray: Array<string> = path.split('/');
     const filename: string = pathArray[pathArray.length - 1];
 
     if (file && filename) {
-      const fileNaming: FileNaming = await decodeFileName(filename);
+      const file_naming: FileNamingV30 | FileNamingV21 | null = await decodeFileName(filename);
 
-      const result = {
+      if (!file_naming) {
+        return reject('Invalid file format.');
+      }
+
+      const version: versionAvailable | null = checkVersion(filename);
+      const data: Array<string> = file.split(/\r?\n/);
+
+      if (!version) {
+        return reject('Invalid version.');
+      }
+
+      data.pop();
+      const hdr = data.shift();
+      const grh = data.shift();
+      const trl = data.pop();
+      const grt = data.pop();
+
+      if (!hdr || !grh || !trl || !grt) {
+        return reject('Invalid Control Record.');
+      }
+
+      const hdrData: HDRVer21 | HDRVer300 | null = await decodeHdr(hdr, version);
+      const grhData: GRHVer21 | GRHVer300 | null = await decodeGrh(grh, version);
+      const grtData: GRTVer21 | GRTVer300 | null = await decodeGrt(grt, version);
+      const trlData: TRLVer21 | TRLVer300 | null = await decodeTrl(trl, version);
+
+      if (!hdrData || !grhData || !grtData || !trlData) {
+        return reject('Invalid Control Record.');
+      }
+
+      const result: cwr = {
         ...cwrForm,
-        fileNaming: {
-          ...fileNaming,
+        file_naming: {
+          ...file_naming,
+        },
+        control_record: {
+          hdr: { ...hdrData },
+          grh: { ...grhData },
+          grt: { ...grtData },
+          trl: { ...trlData },
         },
       };
 
       return resolve(result);
     }
-    return reject('Something happen.');
+    return reject('File is not found.');
   });
-};
-
-const decodeFileName = async (filename: string) => {
-  const version = filename.slice(16, 19);
-  const stacks = (await fetch('filename')) as Array<Filename>;
-  let result: FileNaming = { ...FormFileNaming, version };
-
-  stacks.map((stack) => {
-    const { field, start_char, end_char } = stack;
-    const name: string = field;
-    const start: number = start_char - 1;
-    const end: number = end_char - 1;
-    const value: string = filename.slice(start, end);
-    result = {
-      ...result,
-      [name]: value,
-    };
-  });
-
-  return result;
 };
