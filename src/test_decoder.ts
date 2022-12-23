@@ -8,7 +8,7 @@ const fullpath = __dirname + `${bucket}${fileName}`;
 export const decode = async (fullpath: string) => {
   try {
     const decode = await decoderFullPath(fullpath);
-    console.log(decode);
+    // console.log(decode);
     return decode;
   } catch (e) {
     throw e;

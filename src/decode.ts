@@ -14,6 +14,8 @@ import {
   TRLVer21,
   TRLVer300,
 } from './model/control_record';
+import { decodeTransactionsDetail } from './library/transactions';
+import { TransactionV21 } from './model/transaction';
 
 export const decoderFullPath = async (path: string): Promise<cwr> => {
   return new Promise(async (resolve, reject) => {
@@ -30,13 +32,12 @@ export const decoderFullPath = async (path: string): Promise<cwr> => {
       }
 
       const version: versionAvailable | null = checkVersion(filename);
-      const data: Array<string> = file.split(/\r?\n/);
+      const data: Array<string> = file.split(/\r?\n/).filter((item) => item);
 
       if (!version) {
         return reject('Invalid version.');
       }
 
-      data.pop();
       const hdr = data.shift();
       const grh = data.shift();
       const trl = data.pop();
@@ -55,6 +56,8 @@ export const decoderFullPath = async (path: string): Promise<cwr> => {
         return reject('Invalid Control Record.');
       }
 
+      const transactions: Array<Array<TransactionV21>> = await decodeTransactionsDetail(data, version);
+
       const result: cwr = {
         ...cwrForm,
         file_naming: {
@@ -66,6 +69,7 @@ export const decoderFullPath = async (path: string): Promise<cwr> => {
           grt: { ...grtData },
           trl: { ...trlData },
         },
+        transactions: [...transactions],
       };
 
       return resolve(result);
