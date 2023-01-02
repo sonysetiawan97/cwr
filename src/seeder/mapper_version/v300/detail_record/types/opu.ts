@@ -2,9 +2,9 @@ import { inputTypeEnum } from '../../../../../enum/input_type';
 import { versionAvailable } from '../../../../../enum/version';
 import { MapperSeeder } from '../../../../../model/mapper';
 
-const group_name = 'SPU';
+const group_name = 'OPU';
 
-export const SPU: Array<MapperSeeder> = [
+export const OPU: Array<MapperSeeder> = [
   {
     version: versionAvailable.v21,
     group_name,
@@ -97,7 +97,7 @@ export const SPU: Array<MapperSeeder> = [
     start_char: 88,
     size: 11,
     end_char: 99,
-    field: 'publisher_ipi_name',
+    field: 'publisher_ip_name',
     description: 'Publisher IPI Name #',
     is_required: false,
   },

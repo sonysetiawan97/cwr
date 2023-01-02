@@ -2,9 +2,9 @@ import { inputTypeEnum } from '../../../../../enum/input_type';
 import { versionAvailable } from '../../../../../enum/version';
 import { MapperSeeder } from '../../../../../model/mapper';
 
-const group_name = 'NPA';
+const group_name = 'NWN';
 
-export const NPA: Array<MapperSeeder> = [
+export const NWN: Array<MapperSeeder> = [
   {
     version: versionAvailable.v21,
     group_name,
@@ -25,8 +25,8 @@ export const NPA: Array<MapperSeeder> = [
     start_char: 20,
     size: 9,
     end_char: 29,
-    field: 'interested_party',
-    description: 'Interested Party #',
+    field: 'interested_party_number',
+    description: 'Interested Party Number',
     is_required: false,
   },
   {
@@ -37,8 +37,8 @@ export const NPA: Array<MapperSeeder> = [
     start_char: 29,
     size: 160,
     end_char: 189,
-    field: 'interested_party_name',
-    description: 'Interested Party Name',
+    field: 'writer_last_name',
+    description: 'Writer Last Name',
     is_required: true,
   },
   {
@@ -49,20 +49,32 @@ export const NPA: Array<MapperSeeder> = [
     start_char: 189,
     size: 160,
     end_char: 349,
-    field: 'interested_party_writter',
-    description: 'Interested Party Writter',
-    is_required: true,
+    field: 'writer_first_name',
+    description: 'Writer First Name',
+    is_required: false,
   },
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Lookup,
+    input_type: inputTypeEnum.Standard,
     tag: 'free_text',
     start_char: 349,
     size: 2,
     end_char: 351,
     field: 'language_code',
     description: 'Language Code',
+    is_required: false,
+  },
+  {
+    version: versionAvailable.v21,
+    group_name,
+    input_type: inputTypeEnum.Standard,
+    tag: 'free_text',
+    start_char: 351,
+    size: 4,
+    end_char: 355,
+    field: 'script_code',
+    description: 'Script Code',
     is_required: false,
   },
 ];

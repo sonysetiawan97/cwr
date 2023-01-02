@@ -5,7 +5,6 @@ import { ACKV21, formAckV21 } from '../model/Transactions/v21/ack';
 import { Mapper } from '../model/mapper';
 import { Params, Where } from '../model/model';
 import { TransactionV21, formTransactionV21 } from '../model/transaction';
-import { transactionHeaderV21 } from '../seeder/mapper_version/v21/transaction_header/transaction_header';
 
 export const decodeTransactionsDetail = async (data: Array<string>, version: string): Promise<TransactionV21[][]> => {
   const listTransactionIndex: Array<number> = [];
@@ -25,7 +24,7 @@ export const decodeTransactionsDetail = async (data: Array<string>, version: str
   listTransactionIndex.map((_, index) => {
     const [start, end] = listTransactionIndex.splice(index, 2);
     const transactionData: Array<string> = data.slice(start, end);
-    listTransactionString.push(transactionData);
+    listTransactionString.unshift(transactionData);
   });
 
   return await decodeTransactions(listTransactionString);

@@ -9,4 +9,5 @@ export enum inputTypeEnum {
   Duration = 'duration',
   List = 'list',
   Lookup = 'lookup',
+  Standard = 'international_standard'
 }
