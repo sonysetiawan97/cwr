@@ -3,10 +3,11 @@ import { versionAvailable } from '../../../../../enum/version';
 import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'NAT';
+const version = versionAvailable.v300;
 
 export const NAT: Array<MapperSeeder> = [
   {
-    version: versionAvailable.v21,
+    version,
     group_name,
     input_type: inputTypeEnum.Alpha,
     tag: 'free_text',
@@ -18,7 +19,7 @@ export const NAT: Array<MapperSeeder> = [
     is_required: true,
   },
   {
-    version: versionAvailable.v21,
+    version,
     group_name,
     input_type: inputTypeEnum.Alpha,
     tag: 'free_text',
@@ -30,7 +31,7 @@ export const NAT: Array<MapperSeeder> = [
     is_required: true,
   },
   {
-    version: versionAvailable.v21,
+    version,
     group_name,
     input_type: inputTypeEnum.Lookup,
     tag: 'free_text',
@@ -42,7 +43,7 @@ export const NAT: Array<MapperSeeder> = [
     is_required: true,
   },
   {
-    version: versionAvailable.v21,
+    version,
     group_name,
     input_type: inputTypeEnum.Standard,
     tag: 'free_text',
@@ -54,7 +55,7 @@ export const NAT: Array<MapperSeeder> = [
     is_required: false,
   },
   {
-    version: versionAvailable.v21,
+    version,
     group_name,
     input_type: inputTypeEnum.Standard,
     tag: 'free_text',

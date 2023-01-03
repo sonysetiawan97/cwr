@@ -206,8 +206,8 @@ export const FTV: Array<MapperSeeder> = [
     start_char: 224,
     size: 0,
     end_char: 224,
-    field: 'eidr',
-    description: 'EIDR',
+    field: 'eidr_head',
+    description: 'EIDR Head',
     is_required: false,
   },
   {

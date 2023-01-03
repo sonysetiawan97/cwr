@@ -1,12 +1,12 @@
-import { getData } from '../database/select';
-import { transactionEnum } from '../enum/transaction';
 import { versionAvailable } from '../enum/version';
-import { ACKV21, formAckV21 } from '../model/Transactions/v21/ack';
-import { Mapper } from '../model/mapper';
-import { Params, Where } from '../model/model';
-import { TransactionV21, formTransactionV21 } from '../model/transaction';
+import { TransactionV21, TransactionV300 } from '../model/transaction';
+import { decodeTransactionsV21 } from './transactions/versions/v21';
+import { decodeTransactionsV300 } from './transactions/versions/v300';
 
-export const decodeTransactionsDetail = async (data: Array<string>, version: string): Promise<TransactionV21[][]> => {
+export const decodeTransactionsDetail = async (
+  data: Array<string>,
+  version: string,
+): Promise<Array<Array<TransactionV21 | TransactionV300>>> => {
   const listTransactionIndex: Array<number> = [];
   const listTransactionString: Array<Array<string>> = [];
 
@@ -27,71 +27,11 @@ export const decodeTransactionsDetail = async (data: Array<string>, version: str
     listTransactionString.unshift(transactionData);
   });
 
-  return await decodeTransactions(listTransactionString);
-};
+  if (version === versionAvailable.v21) {
+    return await decodeTransactionsV21(listTransactionString);
+  } else if (version === versionAvailable.v300) {
+    return await decodeTransactionsV300(listTransactionString);
+  }
 
-export const decodeTransactions = async (data: Array<Array<string>>): Promise<Array<Array<TransactionV21>>> => {
-  let result: Array<Array<TransactionV21>> = [];
-
-  await Promise.all(
-    data.map(async (item) => {
-      const entry: Array<TransactionV21> = await decodeTransaction(item);
-      result.unshift(entry);
-    }),
-  );
-
-  return result;
-};
-
-export const decodeTransaction = async (data: Array<string>): Promise<Array<TransactionV21>> => {
-  let result: Array<TransactionV21> = [];
-
-  await Promise.all(
-    data.map(async (item) => {
-      let entry: TransactionV21 = { ...formTransactionV21 };
-      const group: string = item.slice(0, 3);
-      if (group === transactionEnum.ACK) {
-        const values: ACKV21 = await decodeAckV21(item, group);
-        entry = {
-          ...entry,
-          group,
-          values,
-        };
-      }
-      result.unshift(entry);
-    }),
-  );
-
-  return result;
-};
-
-export const decodeAckV21 = async (text: string, group_name: string): Promise<ACKV21> => {
-  const table: string = 'mapper';
-  const version: string = versionAvailable.v21;
-  const where: Where = {
-    version,
-    group_name,
-  };
-  const params: Params = {
-    where,
-  };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
-
-  let result: ACKV21 = {
-    ...formAckV21,
-  };
-
-  stacks.map((stack) => {
-    const { field, start_char, end_char } = stack;
-    const name: string = field;
-    const start: number = start_char - 1;
-    const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
-    result = {
-      ...result,
-      [name]: value,
-    };
-  });
-
-  return result;
+  return [];
 };

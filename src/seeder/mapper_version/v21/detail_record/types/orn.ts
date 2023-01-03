@@ -181,7 +181,7 @@ export const ORN: Array<MapperSeeder> = [
     start_char: 200,
     size: 20,
     end_char: 280,
-    field: 'episode',
+    field: 'episode_number',
     description: 'Episode #',
     is_required: false,
   },

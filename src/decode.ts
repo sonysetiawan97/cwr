@@ -15,7 +15,7 @@ import {
   TRLVer300,
 } from './model/control_record';
 import { decodeTransactionsDetail } from './library/transactions';
-import { TransactionV21 } from './model/transaction';
+import { TransactionV21, TransactionV300 } from './model/transaction';
 
 export const decoderFullPath = async (path: string): Promise<cwr> => {
   return new Promise(async (resolve, reject) => {
@@ -56,7 +56,10 @@ export const decoderFullPath = async (path: string): Promise<cwr> => {
         return reject('Invalid Control Record.');
       }
 
-      const transactions: Array<Array<TransactionV21>> = await decodeTransactionsDetail(data, version);
+      const transactions: Array<Array<TransactionV21 | TransactionV300>> = await decodeTransactionsDetail(
+        data,
+        version,
+      );
 
       const result: cwr = {
         ...cwrForm,

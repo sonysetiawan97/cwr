@@ -37,8 +37,8 @@ export const REC: Array<MapperSeeder> = [
     start_char: 28,
     size: 60,
     end_char: 88,
-    field: 'constant',
-    description: 'Constant',
+    field: 'constant_1',
+    description: 'Constant_1',
     is_required: false,
   },
   {
@@ -61,8 +61,8 @@ export const REC: Array<MapperSeeder> = [
     start_char: 94,
     size: 5,
     end_char: 99,
-    field: 'constant',
-    description: 'Constant',
+    field: 'constant_2',
+    description: 'Constant_2',
     is_required: false,
   },
   {

@@ -33,4 +33,5 @@ export enum transactionEnum {
   NOW = 'NOW', // Non-Roman Alphabet Other Writer Name
   MSG = 'MSG', // Message
   ARI = 'ARI', // Additional Related Information
+  NPA = 'NPA'
 }
