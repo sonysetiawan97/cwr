@@ -1,4 +1,4 @@
-export enum transactionEnum {
+export enum transactionEnumV21 {
   AGR = 'AGR', // Agreement supporting Work Registration
   NWR = 'NWR', // New Works Registration
   REV = 'REV', // Revised Registration
@@ -33,5 +33,41 @@ export enum transactionEnum {
   NOW = 'NOW', // Non-Roman Alphabet Other Writer Name
   MSG = 'MSG', // Message
   ARI = 'ARI', // Additional Related Information
-  NPA = 'NPA'
+  NPA = 'NPA',
+}
+
+export enum transactionEnumV300 {
+  ACK = 'ACK',
+  DWR = 'DWR',
+  EXC = 'EXC',
+  ISA = 'ISA',
+  ISR = 'ISR',
+  LIC = 'LIC',
+  WRK = 'WRK',
+  ALT = 'ALT',
+  DOT = 'DOT',
+  FTV = 'FTV',
+  IND = 'IND',
+  INS = 'INS',
+  MSG = 'MSG',
+  NAT = 'NAT',
+  NOT = 'NOT',
+  NOW = 'NOW',
+  NPN = 'NPN',
+  NPR = 'NPR',
+  NRC = 'NRC',
+  NWN = 'NWN',
+  OPT = 'OPT',
+  OPU = 'OPU',
+  ORN = 'ORN',
+  OWK = 'OWK',
+  PER = 'PER',
+  PWR = 'PWR',
+  REC = 'REC',
+  SPT = 'SPT',
+  SPU = 'SPU',
+  SWR = 'SWR',
+  SWT = 'SWT',
+  WRI = 'WRI',
+  XRF = 'XRF',
 }

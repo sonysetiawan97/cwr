@@ -32,6 +32,34 @@ import { EXCV21 } from './Transactions/v21/headers/exc';
 import { ISWV21 } from './Transactions/v21/headers/isw';
 import { NWRV21 } from './Transactions/v21/headers/nwr';
 import { REVV21 } from './Transactions/v21/headers/rev';
+import { ALTV300 } from './Transactions/v300/details/alt';
+import { DOTV300 } from './Transactions/v300/details/dot';
+import { FTVV300 } from './Transactions/v300/details/ftv';
+import { INDV300 } from './Transactions/v300/details/ind';
+import { INSV300 } from './Transactions/v300/details/ins';
+import { MSGV300 } from './Transactions/v300/details/msg';
+import { NATV300 } from './Transactions/v300/details/nat';
+import { NOTV300 } from './Transactions/v300/details/not';
+import { NOWV300 } from './Transactions/v300/details/now';
+import { NPNV300 } from './Transactions/v300/details/npn';
+import { NPRV300 } from './Transactions/v300/details/npr';
+import { NRCV300 } from './Transactions/v300/details/nrc';
+import { NWNV300 } from './Transactions/v300/details/nwn';
+import { OPTV300 } from './Transactions/v300/details/opt';
+import { OPUV300 } from './Transactions/v300/details/opu';
+import { ORNV300 } from './Transactions/v300/details/orn';
+import { OWKV300 } from './Transactions/v300/details/owk';
+import { OWRV300 } from './Transactions/v300/details/owr';
+import { OWTV300 } from './Transactions/v300/details/owt';
+import { PERV300 } from './Transactions/v300/details/per';
+import { PWRV300 } from './Transactions/v300/details/pwr';
+import { RECV300 } from './Transactions/v300/details/rec';
+import { SPTV300 } from './Transactions/v300/details/spt';
+import { SPUV300 } from './Transactions/v300/details/spu';
+import { SWRV300 } from './Transactions/v300/details/swr';
+import { SWTV300 } from './Transactions/v300/details/swt';
+import { WRIV300 } from './Transactions/v300/details/wri';
+import { XRFV300 } from './Transactions/v300/details/xrf';
 import { ACKV300 } from './Transactions/v300/headers/ack';
 import { DWRV300 } from './Transactions/v300/headers/dwr';
 import { EXCV300 } from './Transactions/v300/headers/exc';
@@ -87,7 +115,43 @@ export const formTransactionV21: TransactionV21 = {
 
 export interface TransactionV300 {
   group: string;
-  values: null | ACKV300 | DWRV300 | EXCV300 | ISAV300 | ISRV300 | LICV300 | WRKV300;
+  values:
+    | null
+    | ACKV300
+    | DWRV300
+    | EXCV300
+    | ISAV300
+    | ISRV300
+    | LICV300
+    | WRKV300
+    | ALTV300
+    | DOTV300
+    | FTVV300
+    | INDV300
+    | INSV300
+    | MSGV300
+    | NATV300
+    | NOTV300
+    | NOWV300
+    | NPNV300
+    | NPRV300
+    | NRCV300
+    | NWNV300
+    | OPTV300
+    | OPUV300
+    | ORNV300
+    | OWKV300
+    | OWRV300
+    | OWTV300
+    | PERV300
+    | PWRV300
+    | RECV300
+    | SPTV300
+    | SPUV300
+    | SWRV300
+    | SWTV300
+    | WRIV300
+    | XRFV300;
 }
 
 export const formTransactionV300: TransactionV300 = {

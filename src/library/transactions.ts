@@ -1,7 +1,7 @@
 import { versionAvailable } from '../enum/version';
 import { TransactionV21, TransactionV300 } from '../model/transaction';
-import { decodeTransactionsV21 } from './transactions/versions/v21';
-import { decodeTransactionsV300 } from './transactions/versions/v300';
+import { decodeTransactionsV21 } from './transactions/decode/v21';
+import { decodeTransactionsV300 } from './transactions/decode/v300';
 
 export const decodeTransactionsDetail = async (
   data: Array<string>,
