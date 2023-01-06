@@ -1,3 +1,5 @@
+import { versionAvailable } from '../enum/version';
+
 export interface Filename {
   id: number;
   version: string;
@@ -27,6 +29,20 @@ export interface FileNamingV21 {
   receiver: string;
   version: string;
 }
+
+export interface EncodeFileNamingV21 {
+  sequence: string;
+  society: string;
+  receiver: string;
+  version: versionAvailable;
+}
+
+export const formEncodeFileNamingV21: EncodeFileNamingV21 = {
+  sequence: '',
+  society: '',
+  receiver: '',
+  version: versionAvailable.v21,
+};
 
 export const FormFileNamingV21: FileNamingV21 = {
   identity: '',

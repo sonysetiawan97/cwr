@@ -1,5 +1,12 @@
 import { getData } from '../database/select';
-import { Filename, FileNamingV21, FileNamingV30, FormFileNamingV21, FormFileNamingV30 } from '../model/filename';
+import {
+  EncodeFileNamingV21,
+  Filename,
+  FileNamingV21,
+  FileNamingV30,
+  FormFileNamingV21,
+  FormFileNamingV30,
+} from '../model/filename';
 import { Params, Where } from '../model/model';
 import { versionAvailable } from '../enum/version';
 
@@ -34,6 +41,17 @@ export const checkVersion = (filename: string): versionAvailable | null => {
 
   if (version === '_V3-0-0.') {
     return versionAvailable.v300;
+  }
+
+  return null;
+};
+
+export const encodeFileName = (filename: EncodeFileNamingV21): string | null => {
+  const { version } = filename;
+  if (version === versionAvailable.v21) {
+    return createFileNameVer21(filename);
+  } else if (version === versionAvailable.v300) {
+    return '';
   }
 
   return null;
@@ -133,4 +151,17 @@ const fileNameVer30 = async (filename: string): Promise<FileNamingV30> => {
   });
 
   return result;
+};
+
+const createFileNameVer21 = (filename: EncodeFileNamingV21): string => {
+  const date = new Date();
+  const identity = 'CW';
+  const year = date.getFullYear().toString().substring(2);
+  const receiver = `_${filename.receiver}`;
+  const version = `.${filename.version}`;
+  const file: FileNamingV21 = { ...FormFileNamingV21, ...filename, year, identity, receiver, version };
+
+  return Object.values(file)
+    .map((item) => item)
+    .join('');
 };

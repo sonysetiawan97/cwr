@@ -13,3 +13,23 @@ export const cwrForm: cwr = {
   control_record: null,
   transactions: [],
 };
+
+export interface CwrEncode {
+  filename: string;
+  data: string;
+}
+
+export const formCwrEncode: CwrEncode = {
+  filename: '',
+  data: '',
+};
+
+export interface CwrEncodeData {
+  control_record: ControlRecord | null;
+  transactions: Array<Array<TransactionV21 | TransactionV300>> | [];
+}
+
+export const formCwrEncodeData: CwrEncodeData = {
+  control_record: null,
+  transactions: [],
+};
