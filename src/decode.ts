@@ -2,7 +2,7 @@ import { cwr, cwrForm } from './model/cwr';
 import { FileNamingV21, FileNamingV30 } from './model/filename';
 import * as fs from 'fs';
 import { checkVersion, decodeFileName } from './library/filename';
-import { decodeGrh, decodeGrt, decodeHdr, decodeTrl } from './library/control_record';
+import { decodeGrh, decodeGrt, decodeHdr, decodeTrl } from './library/control_record/decode';
 import { versionAvailable } from './enum/version';
 import {
   GRHVer21,

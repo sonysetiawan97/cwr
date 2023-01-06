@@ -3,6 +3,7 @@ import { encodeAck } from './encode';
 import { CwrEncode, CwrEncodeData, cwr } from './model/cwr';
 import { EncodeFileNamingV21 } from './model/filename';
 import { filename, data } from './__files__/cwr';
+import * as fs from 'fs';
 
 const fileName = 'CW200046026_MME.V21';
 // const fileName = 'CW170037SA_058_V3-0-0.SUB';

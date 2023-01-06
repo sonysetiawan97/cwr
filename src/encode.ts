@@ -1,8 +1,11 @@
+import { joinEnum } from './enum/join';
 import { versionAvailable } from './enum/version';
-import { encodeControlRecord } from './library/encode/control_record';
+import { encodeControlRecordVer21 } from './library/control_record/encode/v21';
 import { encodeFileName } from './library/filename';
+import { encodeTransactionsVer21 } from './library/transactions/encode/v21';
 import { CwrEncode, CwrEncodeData, formCwrEncode } from './model/cwr';
 import { EncodeFileNamingV21 } from './model/filename';
+import { TransactionV21 } from './model/transaction';
 
 export const encodeAck = async (filenameData: EncodeFileNamingV21, data: CwrEncodeData): Promise<CwrEncode> => {
   return new Promise(async (resolve, reject) => {
@@ -10,11 +13,18 @@ export const encodeAck = async (filenameData: EncodeFileNamingV21, data: CwrEnco
     let result: CwrEncode = { ...formCwrEncode };
     if (version === versionAvailable.v21) {
       const control_record = data.control_record;
+      const transactions = data.transactions as Array<Array<TransactionV21>>;
       if (control_record) {
         const filename: string | null = encodeFileName(filenameData);
-        const resultControlRecord: Array<string> = await encodeControlRecord(control_record, version);
+        const resultControlRecord: Array<string> = await encodeControlRecordVer21(control_record);
+        const resultTransactions: Array<string> = await encodeTransactionsVer21(transactions);
         const finalResult: Array<string> = [...resultControlRecord];
-        const finalData: string = finalResult.join('\r\n');
+
+        finalResult.splice(2, 0, ...resultTransactions);
+
+        const finalData: string = finalResult.join(joinEnum.LineBreak);
+
+        console.log(finalData);
 
         if (filename) {
           result = {

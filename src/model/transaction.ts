@@ -1,3 +1,4 @@
+import { transactionEnumV21, transactionEnumV300 } from '../enum/transaction';
 import { ALTV21 } from './Transactions/v21/details/alt';
 import { ARIV21 } from './Transactions/v21/details/ari';
 import { COMV21 } from './Transactions/v21/details/com';
@@ -69,7 +70,7 @@ import { LICV300 } from './Transactions/v300/headers/lic';
 import { WRKV300 } from './Transactions/v300/headers/wrk';
 
 export interface TransactionV21 {
-  group: string;
+  group: transactionEnumV21 | string;
   values:
     | null
     | ACKV21
@@ -114,7 +115,7 @@ export const formTransactionV21: TransactionV21 = {
 };
 
 export interface TransactionV300 {
-  group: string;
+  group: string | transactionEnumV300;
   values:
     | null
     | ACKV300

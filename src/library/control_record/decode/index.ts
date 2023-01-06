@@ -15,12 +15,12 @@ import {
   HDRVer300,
   TRLVer21,
   TRLVer300,
-} from '../model/control_record';
-import { versionAvailable } from '../enum/version';
-import { Params, Where } from '../model/model';
-import { getData } from '../database/select';
-import { Mapper } from '../model/mapper';
-import { controlRecordEnum } from '../enum/control_record';
+} from '../../../model/control_record';
+import { versionAvailable } from '../../../enum/version';
+import { Params, Where } from '../../../model/model';
+import { getData } from '../../../database/select';
+import { Mapper } from '../../../model/mapper';
+import { controlRecordEnum } from '../../../enum/control_record';
 
 export const decodeHdr = async (text: string, version: versionAvailable): Promise<HDRVer21 | HDRVer300 | null> => {
   if (version === versionAvailable.v21) {
