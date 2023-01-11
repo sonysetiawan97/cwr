@@ -11,7 +11,7 @@ import { Params, Where } from '../model/model';
 import { versionAvailable } from '../enum/version';
 
 export const decodeFileName = async (filename: string): Promise<FileNamingV21 | FileNamingV30 | null> => {
-  const availableVersion: Array<string> = ['.V21', '_V3-0-0.'];
+  const availableVersion: string[] = ['.V21', '_V3-0-0.'];
   const [version] = availableVersion.filter((item) => {
     const regex = new RegExp(item);
     return regex.test(filename);
@@ -29,7 +29,7 @@ export const decodeFileName = async (filename: string): Promise<FileNamingV21 | 
 };
 
 export const checkVersion = (filename: string): versionAvailable | null => {
-  const availableVersion: Array<string> = ['.V21', '_V3-0-0.'];
+  const availableVersion: string[] = ['.V21', '_V3-0-0.'];
   const [version] = availableVersion.filter((item) => {
     const regex = new RegExp(item);
     return regex.test(filename);
@@ -67,7 +67,7 @@ const fileNameVer21 = async (filename: string): Promise<FileNamingV21> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Filename>;
+  const stacks = (await getData(table, params)) as Filename[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char } = stack;
@@ -94,7 +94,7 @@ const fileNameVer30 = async (filename: string): Promise<FileNamingV30> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Filename>;
+  const stacks = (await getData(table, params)) as Filename[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char, size } = stack;

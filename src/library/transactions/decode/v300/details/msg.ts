@@ -14,7 +14,7 @@ export const msg = async (text: string, group_name: string): Promise<MSGV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: MSGV300 = {
     ...formMsgV300,

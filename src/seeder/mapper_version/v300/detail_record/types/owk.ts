@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'OWK';
 const version = versionAvailable.v300;
 
-export const OWK: Array<MapperSeeder> = [
+export const OWK: MapperSeeder[] = [
   {
     version,
     group_name,

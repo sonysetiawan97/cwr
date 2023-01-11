@@ -14,7 +14,7 @@ export const opt = async (text: string, group_name: string): Promise<OPTV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: OPTV300 = {
     ...formOptV300,

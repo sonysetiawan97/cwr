@@ -14,7 +14,7 @@ export const npa = async (text: string, group_name: string): Promise<NPAV21> => 
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: NPAV21 = {
     ...formNpaV21,

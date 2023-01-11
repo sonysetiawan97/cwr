@@ -1,4 +1,4 @@
-import { cwr, cwrForm } from './model/cwr';
+import { Cwr, cwrForm } from './model/cwr';
 import { FileNamingV21, FileNamingV30 } from './model/filename';
 import * as fs from 'fs';
 import { checkVersion, decodeFileName } from './library/filename';
@@ -17,11 +17,11 @@ import {
 import { decodeTransactionsDetail } from './library/transactions';
 import { TransactionV21, TransactionV300 } from './model/transaction';
 
-export const decoderFullPath = async (path: string): Promise<cwr> => {
+export const decoderFullPath = async (path: string): Promise<Cwr> => {
   return new Promise(async (resolve, reject) => {
     const file: string = fs.readFileSync(path, 'utf-8');
 
-    const pathArray: Array<string> = path.split('/');
+    const pathArray: string[] = path.split('/');
     const filename: string = pathArray[pathArray.length - 1];
 
     if (file && filename) {
@@ -32,7 +32,7 @@ export const decoderFullPath = async (path: string): Promise<cwr> => {
       }
 
       const version: versionAvailable | null = checkVersion(filename);
-      const data: Array<string> = file.split(/\r?\n/).filter((item) => item);
+      const data: string[] = file.split(/\r?\n/).filter((item) => item);
 
       if (!version) {
         return reject('Invalid version.');
@@ -56,12 +56,12 @@ export const decoderFullPath = async (path: string): Promise<cwr> => {
         return reject('Invalid Control Record.');
       }
 
-      const transactions: Array<Array<TransactionV21 | TransactionV300>> = await decodeTransactionsDetail(
+      const transactions: TransactionV21[][] | TransactionV300[][] = await decodeTransactionsDetail(
         data,
         version,
       );
 
-      const result: cwr = {
+      const result: Cwr = {
         ...cwrForm,
         file_naming: {
           ...file_naming,

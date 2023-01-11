@@ -1,6 +1,6 @@
 import { Table } from '../model/model';
 
-export const mapper: Array<Table> = [
+export const mapper: Table[] = [
   {
     name: 'id',
     type: 'INTEGER',

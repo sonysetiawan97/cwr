@@ -2,7 +2,7 @@ import { controlRecordEnum } from '../../enum/control_record';
 import { versionAvailable } from '../../enum/version';
 import { MapperSeeder } from '../../model/mapper';
 
-const HDR: Array<MapperSeeder> = [
+const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v300,
     group_name: controlRecordEnum.HDR,
@@ -173,7 +173,7 @@ const HDR: Array<MapperSeeder> = [
   },
 ];
 
-const GRH: Array<MapperSeeder> = [
+const GRH: MapperSeeder[] = [
   {
     version: versionAvailable.v300,
     group_name: controlRecordEnum.GRH,
@@ -236,7 +236,7 @@ const GRH: Array<MapperSeeder> = [
   },
 ];
 
-const GRT: Array<MapperSeeder> = [
+const GRT: MapperSeeder[] = [
   {
     version: versionAvailable.v300,
     group_name: controlRecordEnum.GRT,
@@ -287,7 +287,7 @@ const GRT: Array<MapperSeeder> = [
   },
 ];
 
-const TRL: Array<MapperSeeder> = [
+const TRL: MapperSeeder[] = [
   {
     version: versionAvailable.v300,
     group_name: controlRecordEnum.TRL,
@@ -338,4 +338,4 @@ const TRL: Array<MapperSeeder> = [
   },
 ];
 
-export const cwr300: Array<MapperSeeder> = [...HDR, ...GRH, ...GRT, ...TRL];
+export const cwr300: MapperSeeder[] = [...HDR, ...GRH, ...GRT, ...TRL];

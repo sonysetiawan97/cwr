@@ -14,7 +14,7 @@ export const orn = async (text: string, group_name: string): Promise<ORNV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: ORNV300 = {
     ...formOrnV300,

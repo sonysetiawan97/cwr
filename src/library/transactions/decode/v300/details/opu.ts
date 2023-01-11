@@ -14,7 +14,7 @@ export const opu = async (text: string, group_name: string): Promise<OPUV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: OPUV300 = {
     ...formOpuV300,

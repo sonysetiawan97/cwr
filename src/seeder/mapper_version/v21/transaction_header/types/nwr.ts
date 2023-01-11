@@ -4,7 +4,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'NWR';
 
-export const NWR: Array<MapperSeeder> = [
+export const NWR: MapperSeeder[] = [
   {
     description: 'Record Prefix',
     field: 'record_prefix',

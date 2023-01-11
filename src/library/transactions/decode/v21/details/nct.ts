@@ -14,7 +14,7 @@ export const nct = async (text: string, group_name: string): Promise<NCTV21> => 
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: NCTV21 = {
     ...formNctV21,

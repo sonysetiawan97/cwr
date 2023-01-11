@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'OWT';
 const version = versionAvailable.v300;
 
-export const OWT: Array<MapperSeeder> = [
+export const OWT: MapperSeeder[] = [
   {
     version,
     group_name,

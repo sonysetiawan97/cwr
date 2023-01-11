@@ -14,7 +14,7 @@ export const wri = async (text: string, group_name: string): Promise<WRIV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: WRIV300 = {
     ...formWriV300,

@@ -14,7 +14,7 @@ export const isa = async (text: string, group_name: string): Promise<ISAV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: ISAV300 = {
     ...formIsaV300,

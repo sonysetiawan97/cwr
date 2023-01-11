@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'NAT';
 const version = versionAvailable.v300;
 
-export const NAT: Array<MapperSeeder> = [
+export const NAT: MapperSeeder[] = [
   {
     version,
     group_name,

@@ -14,7 +14,7 @@ export const pwr = async (text: string, group_name: string): Promise<PWRV21> => 
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: PWRV21 = {
     ...formPwr21,

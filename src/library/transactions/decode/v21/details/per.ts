@@ -14,7 +14,7 @@ export const per = async (text: string, group_name: string): Promise<PERV21> => 
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: PERV21 = {
     ...formPerV21,

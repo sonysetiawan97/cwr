@@ -7,7 +7,7 @@ import { getDataMapper } from '../../../../fetch/get';
 export const encodeGRTVer21 = async (data: GRTVer21): Promise<string> => {
   const version: versionAvailable = versionAvailable.v21;
   const group_name: controlRecordEnum = controlRecordEnum.GRT;
-  const stacks: Array<Mapper> = await getDataMapper(version, group_name);
+  const stacks: Mapper[] = await getDataMapper(version, group_name);
 
   return stacks
     .map((item) => {

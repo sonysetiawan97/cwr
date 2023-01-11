@@ -4,7 +4,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'NPR';
 
-export const NPR: Array<MapperSeeder> = [
+export const NPR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,

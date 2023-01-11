@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'OPU';
 const version = versionAvailable.v300;
 
-export const OPU: Array<MapperSeeder> = [
+export const OPU: MapperSeeder[] = [
   {
     version,
     group_name,

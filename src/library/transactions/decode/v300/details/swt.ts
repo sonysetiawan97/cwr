@@ -14,7 +14,7 @@ export const swt = async (text: string, group_name: string): Promise<SWTV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: SWTV300 = {
     ...formSwtV300,

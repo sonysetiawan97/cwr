@@ -4,7 +4,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'EWT';
 
-export const EWT: Array<MapperSeeder> = [
+export const EWT: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,

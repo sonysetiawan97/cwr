@@ -4,7 +4,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'ORN';
 
-export const ORN: Array<MapperSeeder> = [
+export const ORN: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,

@@ -14,7 +14,7 @@ export const owk = async (text: string, group_name: string): Promise<OWKV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: OWKV300 = {
     ...formOwkV300,

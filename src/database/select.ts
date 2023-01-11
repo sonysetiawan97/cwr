@@ -1,6 +1,6 @@
 import { Params } from '../model/model';
+import * as sqlite3 from 'sqlite3';
 
-const sqlite3 = require('sqlite3').verbose();
 const dbFile = __dirname + '/cwr.db';
 
 const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err: any) => {
@@ -10,14 +10,14 @@ const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err: any) => {
 export const getData = (table: string, params?: Params) => {
   return new Promise((resolve, reject) => {
     db.serialize(() => {
-      const queries: Array<string> = [];
+      const queries: string[] = [];
       const select = `SELECT * FROM ${table}`;
       queries.push(select);
 
       if (params) {
         const { where } = params;
         if (where) {
-          const whereQuery: Array<string> = [];
+          const whereQuery: string[] = [];
           Object.entries(where).map(([key, value]) => {
             whereQuery.push(`${key} = '${value}'`);
           });

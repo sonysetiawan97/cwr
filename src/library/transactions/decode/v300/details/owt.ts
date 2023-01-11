@@ -15,7 +15,7 @@ export const owt = async (text: string, group_name: string): Promise<OWTV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: OWTV300 = {
     ...formOwtV300,

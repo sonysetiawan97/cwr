@@ -88,7 +88,7 @@ const hdrVer21 = async (text: string): Promise<HDRVer21> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char } = stack;
@@ -123,7 +123,7 @@ const hdrVer300 = async (text: string): Promise<HDRVer300> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char } = stack;
@@ -158,7 +158,7 @@ const grhVer21 = async (text: string): Promise<GRHVer21> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char } = stack;
@@ -193,7 +193,7 @@ const grhVer300 = async (text: string): Promise<GRHVer300> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char } = stack;
@@ -228,7 +228,7 @@ const grtVer21 = async (text: string): Promise<GRTVer21> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char } = stack;
@@ -263,7 +263,7 @@ const grtVer300 = async (text: string): Promise<GRTVer300> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char } = stack;
@@ -298,7 +298,7 @@ const trlVer21 = async (text: string): Promise<TRLVer21> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char } = stack;
@@ -333,7 +333,7 @@ const trlVer300 = async (text: string): Promise<TRLVer300> => {
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   stacks.map((stack) => {
     const { field, start_char, end_char } = stack;

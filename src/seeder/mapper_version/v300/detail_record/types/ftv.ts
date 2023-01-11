@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'FTV';
 const version = versionAvailable.v300;
 
-export const FTV: Array<MapperSeeder> = [
+export const FTV: MapperSeeder[] = [
   {
     version,
     group_name,

@@ -68,12 +68,12 @@ import { isa } from './headers/isa';
 import { isr } from './headers/isr';
 import { lic } from './headers/lic';
 
-export const decodeTransactionsV300 = async (data: Array<Array<string>>): Promise<Array<Array<TransactionV300>>> => {
-  let result: Array<Array<TransactionV300>> = [];
+export const decodeTransactionsV300 = async (data: string[][]): Promise<TransactionV300[][]> => {
+  const result: TransactionV300[][] = [];
 
   await Promise.all(
     data.map(async (item) => {
-      const entry: Array<TransactionV300> = await decodeTransactionV300(item);
+      const entry: TransactionV300[] = await decodeTransactionV300(item);
       result.unshift(entry);
     }),
   );
@@ -81,8 +81,8 @@ export const decodeTransactionsV300 = async (data: Array<Array<string>>): Promis
   return result;
 };
 
-export const decodeTransactionV300 = async (data: Array<string>): Promise<Array<TransactionV300>> => {
-  let result: Array<TransactionV300> = [];
+export const decodeTransactionV300 = async (data: string[]): Promise<TransactionV300[]> => {
+  const result: TransactionV300[] = [];
 
   await Promise.all(
     data.map(async (item) => {

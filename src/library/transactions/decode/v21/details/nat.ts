@@ -14,7 +14,7 @@ export const nat = async (text: string, group_name: string): Promise<NATV21> => 
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: NATV21 = {
     ...formNatV21,

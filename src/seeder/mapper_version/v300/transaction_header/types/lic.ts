@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'LIC';
 const version = versionAvailable.v300;
 
-export const LIC: Array<MapperSeeder> = [
+export const LIC: MapperSeeder[] = [
   {
     description: 'Record Prefix',
     field: 'record_prefix',

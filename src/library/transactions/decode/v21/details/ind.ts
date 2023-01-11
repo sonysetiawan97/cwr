@@ -14,7 +14,7 @@ export const ind = async (text: string, group_name: string): Promise<INDV21> => 
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: INDV21 = {
     ...formIndV21,

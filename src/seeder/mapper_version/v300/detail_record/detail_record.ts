@@ -28,7 +28,7 @@ import { SWT } from './types/swt';
 import { WRI } from './types/wri';
 import { XRF } from './types/xrf';
 
-export const detailRecordV21: Array<MapperSeeder> = [
+export const detailRecordV21: MapperSeeder[] = [
   ...ALT,
   ...DOT,
   ...FTV,

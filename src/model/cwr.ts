@@ -2,13 +2,13 @@ import { FileNamingV21, FileNamingV30 } from './filename';
 import { ControlRecord } from './control_record';
 import { TransactionV21, TransactionV300 } from './transaction';
 
-export interface cwr {
+export interface Cwr {
   file_naming: FileNamingV21 | FileNamingV30 | null;
   control_record: ControlRecord | null;
-  transactions: Array<Array<TransactionV21 | TransactionV300>> | [];
+  transactions: TransactionV21[][] | TransactionV300[][] | [];
 }
 
-export const cwrForm: cwr = {
+export const cwrForm: Cwr = {
   file_naming: null,
   control_record: null,
   transactions: [],
@@ -26,7 +26,7 @@ export const formCwrEncode: CwrEncode = {
 
 export interface CwrEncodeData {
   control_record: ControlRecord | null;
-  transactions: Array<Array<TransactionV21 | TransactionV300>> | [];
+  transactions: TransactionV21[][] | TransactionV300[][] | [];
 }
 
 export const formCwrEncodeData: CwrEncodeData = {

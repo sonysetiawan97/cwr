@@ -69,7 +69,7 @@ import { isw } from './headers/isw';
 import { nwr } from './headers/nwr';
 import { rev } from './headers/rev';
 
-export const encodeTransactionsVer21 = async (datas: Array<Array<TransactionV21>>): Promise<Array<string>> => {
+export const encodeTransactionsVer21 = async (datas: TransactionV21[][]): Promise<string[]> => {
   const result = await Promise.all(
     datas
       .map((data) => {

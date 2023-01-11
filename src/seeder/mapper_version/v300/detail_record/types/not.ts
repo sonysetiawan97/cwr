@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'NOT';
 const version = versionAvailable.v300;
 
-export const NOT: Array<MapperSeeder> = [
+export const NOT: MapperSeeder[] = [
   {
     version,
     group_name,

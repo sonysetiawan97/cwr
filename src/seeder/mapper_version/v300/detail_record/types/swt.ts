@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'SWT';
 const version = versionAvailable.v300;
 
-export const SWT: Array<MapperSeeder> = [
+export const SWT: MapperSeeder[] = [
   {
     version,
     group_name,

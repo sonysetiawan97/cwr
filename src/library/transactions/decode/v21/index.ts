@@ -69,12 +69,12 @@ import { isw } from './headers/isw';
 import { nwr } from './headers/nwr';
 import { rev } from './headers/rev';
 
-export const decodeTransactionsV21 = async (data: Array<Array<string>>): Promise<Array<Array<TransactionV21>>> => {
-  let result: Array<Array<TransactionV21>> = [];
+export const decodeTransactionsV21 = async (data: string[][]): Promise<TransactionV21[][]> => {
+  const result: TransactionV21[][] = [];
 
   await Promise.all(
     data.map(async (item) => {
-      const entry: Array<TransactionV21> = await decodeTransactionV21(item);
+      const entry: TransactionV21[] = await decodeTransactionV21(item);
       result.unshift(entry);
     }),
   );
@@ -82,8 +82,8 @@ export const decodeTransactionsV21 = async (data: Array<Array<string>>): Promise
   return result;
 };
 
-export const decodeTransactionV21 = async (data: Array<string>): Promise<Array<TransactionV21>> => {
-  let result: Array<TransactionV21> = [];
+export const decodeTransactionV21 = async (data: string[]): Promise<TransactionV21[]> => {
+  const result: TransactionV21[] = [];
 
   await Promise.all(
     data.map(async (item) => {

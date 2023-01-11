@@ -14,7 +14,7 @@ export const ipa = async (text: string, group_name: string): Promise<IPAV21> => 
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: IPAV21 = {
     ...formIpaV21,

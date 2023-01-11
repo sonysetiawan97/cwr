@@ -14,7 +14,7 @@ export const now = async (text: string, group_name: string): Promise<NOWV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: NOWV300 = {
     ...formNowV300,

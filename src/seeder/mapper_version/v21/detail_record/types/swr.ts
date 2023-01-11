@@ -4,7 +4,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'SWR';
 
-export const SWR: Array<MapperSeeder> = [
+export const SWR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,

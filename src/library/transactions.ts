@@ -4,13 +4,13 @@ import { decodeTransactionsV21 } from './transactions/decode/v21';
 import { decodeTransactionsV300 } from './transactions/decode/v300';
 
 export const decodeTransactionsDetail = async (
-  data: Array<string>,
+  data: string[],
   version: string,
-): Promise<Array<Array<TransactionV21 | TransactionV300>>> => {
-  const listTransactionIndex: Array<number> = [];
-  const listTransactionString: Array<Array<string>> = [];
+): Promise<TransactionV21[][] | TransactionV300[][]> => {
+  const listTransactionIndex: number[] = [];
+  const listTransactionString: string[][] = [];
 
-  const headerTransaction: Array<string> = ['ACK'];
+  const headerTransaction: string[] = ['ACK'];
   headerTransaction.map((item) => {
     const regex = new RegExp(item);
     data.map((value, index) => {
@@ -23,7 +23,7 @@ export const decodeTransactionsDetail = async (
 
   listTransactionIndex.map((_, index) => {
     const [start, end] = listTransactionIndex.splice(index, 2);
-    const transactionData: Array<string> = data.slice(start, end);
+    const transactionData: string[] = data.slice(start, end);
     listTransactionString.unshift(transactionData);
   });
 

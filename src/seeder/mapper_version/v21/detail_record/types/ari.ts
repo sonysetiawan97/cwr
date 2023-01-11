@@ -4,7 +4,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'ARI';
 
-export const ARI: Array<MapperSeeder> = [
+export const ARI: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,

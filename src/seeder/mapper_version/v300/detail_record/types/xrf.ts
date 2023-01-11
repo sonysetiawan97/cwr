@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'XRF';
 const version = versionAvailable.v300;
 
-export const XRF: Array<MapperSeeder> = [
+export const XRF: MapperSeeder[] = [
   {
     version,
     group_name,

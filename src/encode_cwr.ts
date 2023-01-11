@@ -13,18 +13,16 @@ export const encodeCwr = async (filenameData: EncodeFileNamingV21, data: CwrEnco
     let result: CwrEncode = { ...formCwrEncode };
     if (version === versionAvailable.v21) {
       const control_record = data.control_record;
-      const transactions = data.transactions as Array<Array<TransactionV21>>;
+      const transactions = data.transactions as TransactionV21[][];
       if (control_record) {
         const filename: string | null = encodeFileName(filenameData);
-        const resultControlRecord: Array<string> = await encodeControlRecordVer21(control_record);
-        const resultTransactions: Array<string> = await encodeTransactionsVer21(transactions);
-        const finalResult: Array<string> = [...resultControlRecord];
+        const resultControlRecord: string[] = await encodeControlRecordVer21(control_record);
+        const resultTransactions: string[] = await encodeTransactionsVer21(transactions);
+        const finalResult: string[] = [...resultControlRecord];
 
         finalResult.splice(2, 0, ...resultTransactions);
 
         const finalData: string = finalResult.join(joinEnum.LineBreak);
-
-        console.log(finalData);
 
         if (filename) {
           result = {

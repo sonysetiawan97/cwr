@@ -4,7 +4,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'NPA';
 
-export const NPA: Array<MapperSeeder> = [
+export const NPA: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,

@@ -4,7 +4,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'ISW';
 
-export const ISW: Array<MapperSeeder> = [
+export const ISW: MapperSeeder[] = [
   {
     description: 'Record Prefix',
     field: 'record_prefix',

@@ -1,6 +1,6 @@
 import { Table } from '../model/model';
 
-export const filename: Array<Table> = [
+export const filename: Table[] = [
   {
     name: 'id',
     type: 'INTEGER',

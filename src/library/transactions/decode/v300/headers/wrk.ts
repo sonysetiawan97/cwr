@@ -14,7 +14,7 @@ export const wrk = async (text: string, group_name: string): Promise<WRKV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: WRKV300 = {
     ...formWrkV300,

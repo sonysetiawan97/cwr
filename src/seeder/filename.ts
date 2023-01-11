@@ -1,7 +1,7 @@
 import { versionAvailable } from '../enum/version';
 import { FilenameSeeder } from '../model/filename';
 
-export const filename: Array<FilenameSeeder> = [
+export const filename: FilenameSeeder[] = [
   {
     version: versionAvailable.v21,
     input_type: 'alpha',

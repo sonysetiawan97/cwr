@@ -4,7 +4,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 
 const group_name = 'NCT';
 
-export const NCT: Array<MapperSeeder> = [
+export const NCT: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,

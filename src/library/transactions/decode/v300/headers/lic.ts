@@ -15,7 +15,7 @@ export const lic = async (text: string, group_name: string): Promise<LICV300> =>
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: LICV300 = {
     ...formLicV300,

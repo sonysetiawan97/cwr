@@ -14,7 +14,7 @@ export const ack = async (text: string, group_name: string): Promise<ACKV21> => 
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: ACKV21 = {
     ...formAckV21,

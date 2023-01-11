@@ -7,7 +7,7 @@ import { getDataMapper } from '../../../../fetch/get';
 export const encodeHDRVer21 = async (data: HDRVer21): Promise<string> => {
   const version: versionAvailable = versionAvailable.v21;
   const group_name: controlRecordEnum = controlRecordEnum.HDR;
-  const stacks: Array<Mapper> = await getDataMapper(version, group_name);
+  const stacks: Mapper[] = await getDataMapper(version, group_name);
 
   return stacks
     .map((item) => {

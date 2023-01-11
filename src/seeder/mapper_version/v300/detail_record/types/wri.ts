@@ -5,7 +5,7 @@ import { MapperSeeder } from '../../../../../model/mapper';
 const group_name = 'WRI';
 const version = versionAvailable.v300;
 
-export const WRI: Array<MapperSeeder> = [
+export const WRI: MapperSeeder[] = [
   {
     version,
     group_name,

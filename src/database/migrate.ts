@@ -1,7 +1,7 @@
 import { mapper } from '../seeder/mapper';
 import { filename } from '../seeder/filename';
+import * as sqlite3 from 'sqlite3';
 
-const sqlite3 = require('sqlite3').verbose();
 const dbFile = __dirname + '/cwr.db';
 
 const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err: any) => {
@@ -24,7 +24,6 @@ db.serialize(() => {
         .map((val) => "'" + val + "'")
         .join(', ');
       const insert = `INSERT INTO ${key} (${columns}) VALUES (${values});`;
-      console.log(insert);
       db.run(insert);
     });
   });

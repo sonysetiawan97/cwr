@@ -8,7 +8,7 @@ import { Params, Where } from '../../model/model';
 export const getDataMapper = async (
   version: versionAvailable,
   group_name: controlRecordEnum,
-): Promise<Array<Mapper>> => {
+): Promise<Mapper[]> => {
   const table: string = 'mapper';
   const where: Where = {
     version,
@@ -17,14 +17,14 @@ export const getDataMapper = async (
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
   return stacks;
 };
 
 export const getDataMapperTransactionsVer21 = async (
   version: versionAvailable,
   group_name: transactionEnumV21,
-): Promise<Array<Mapper>> => {
+): Promise<Mapper[]> => {
   const table: string = 'mapper';
   const where: Where = {
     version,
@@ -33,6 +33,6 @@ export const getDataMapperTransactionsVer21 = async (
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
   return stacks;
 };

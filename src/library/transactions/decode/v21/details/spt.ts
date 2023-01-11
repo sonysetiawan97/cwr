@@ -14,7 +14,7 @@ export const spt = async (text: string, group_name: string): Promise<SPTV21> => 
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as Array<Mapper>;
+  const stacks = (await getData(table, params)) as Mapper[];
 
   let result: SPTV21 = {
     ...formSptV21,

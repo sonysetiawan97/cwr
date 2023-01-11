@@ -28,7 +28,7 @@ import { SWT } from './types/swt';
 import { TER } from './types/ter';
 import { VER } from './types/ver';
 
-export const detailRecordV21: Array<MapperSeeder> = [
+export const detailRecordV21: MapperSeeder[] = [
   ...TER,
   ...IPA,
   ...NPA,
