@@ -7,7 +7,7 @@ import { CwrEncode, CwrEncodeData, formCwrEncode } from './model/cwr';
 import { EncodeFileNamingV21 } from './model/filename';
 import { TransactionV21 } from './model/transaction';
 
-export const encodeAck = async (filenameData: EncodeFileNamingV21, data: CwrEncodeData): Promise<CwrEncode> => {
+export const encodeCwr = async (filenameData: EncodeFileNamingV21, data: CwrEncodeData): Promise<CwrEncode> => {
   return new Promise(async (resolve, reject) => {
     const { version } = filenameData;
     let result: CwrEncode = { ...formCwrEncode };

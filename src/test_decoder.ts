@@ -1,5 +1,4 @@
-import { decoderFullPath } from './decode';
-import { encodeAck } from './encode';
+import { DecodeCwr, EncodeCwr } from './index';
 import { CwrEncode, CwrEncodeData, cwr } from './model/cwr';
 import { EncodeFileNamingV21 } from './model/filename';
 import { filename, data } from './__files__/cwr';
@@ -12,8 +11,8 @@ const fullpath = __dirname + `${bucket}${fileName}`;
 
 export const decode = async (fullpath: string): Promise<cwr> => {
   try {
-    const decode: cwr = await decoderFullPath(fullpath);
-    return decode;
+    const result: cwr = await DecodeCwr(fullpath);
+    return result;
   } catch (e) {
     throw e;
   }
@@ -21,7 +20,7 @@ export const decode = async (fullpath: string): Promise<cwr> => {
 
 export const encode = async (filename: EncodeFileNamingV21, data: CwrEncodeData): Promise<CwrEncode> => {
   try {
-    const result: CwrEncode = await encodeAck(filename, data);
+    const result: CwrEncode = await EncodeCwr(filename, data);
     return result;
   } catch (e) {
     throw e;
