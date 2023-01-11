@@ -22,7 +22,7 @@ export const decodeTransactionsDetail = async (
   });
 
   listTransactionIndex.map((_, index) => {
-    const [start, end] = listTransactionIndex.splice(index, 2);
+    const [start, end] = listTransactionIndex.slice(index, index + 2);
     const transactionData: string[] = data.slice(start, end);
     listTransactionString.unshift(transactionData);
   });
