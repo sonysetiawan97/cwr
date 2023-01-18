@@ -1,4 +1,5 @@
 import { controlRecordEnum } from '../../enum/control_record';
+import { inputTypeEnum } from '../../enum/input_type';
 import { versionAvailable } from '../../enum/version';
 import { MapperSeeder } from '../../model/mapper';
 
@@ -6,7 +7,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: 'alpha',
+    input_type: inputTypeEnum.Alpha,
     is_required: true,
     tag: 'free_text',
     start_char: 1,
@@ -18,7 +19,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: 'lookup',
+    input_type: inputTypeEnum.Lookup,
     is_required: true,
     tag: 'free_text',
     start_char: 4,
@@ -30,7 +31,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.AlphaNumeric,
     is_required: true,
     tag: 'free_text',
     start_char: 6,
@@ -42,7 +43,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: 'alpha',
+    input_type: inputTypeEnum.AlphaNumeric,
     is_required: true,
     tag: 'free_text',
     start_char: 15,
@@ -54,7 +55,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: 'alpha',
+    input_type: inputTypeEnum.AlphaNumeric,
     is_required: true,
     tag: 'free_text',
     start_char: 60,
@@ -66,7 +67,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: 'date',
+    input_type: inputTypeEnum.Date,
     is_required: true,
     tag: 'free_text_date',
     start_char: 65,
@@ -78,7 +79,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: 'time',
+    input_type: inputTypeEnum.Time,
     is_required: true,
     tag: 'free_text_time',
     start_char: 73,
@@ -90,7 +91,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: 'date',
+    input_type: inputTypeEnum.Date,
     is_required: true,
     tag: 'free_text_date',
     start_char: 79,
@@ -102,7 +103,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: 'lookup',
+    input_type: inputTypeEnum.Lookup,
     is_required: false,
     tag: 'free_text',
     start_char: 87,
@@ -117,7 +118,7 @@ const GRH: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.GRH,
-    input_type: 'lookup',
+    input_type: inputTypeEnum.AlphaNumeric,
     is_required: true,
     tag: 'free_text',
     start_char: 1,
@@ -129,7 +130,7 @@ const GRH: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.GRH,
-    input_type: 'lookup',
+    input_type: inputTypeEnum.Lookup,
     is_required: true,
     tag: 'free_text',
     start_char: 4,
@@ -141,7 +142,7 @@ const GRH: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.GRH,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.Numeric,
     is_required: true,
     tag: 'free_text',
     start_char: 7,
@@ -153,7 +154,7 @@ const GRH: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.GRH,
-    input_type: 'alpha',
+    input_type: inputTypeEnum.AlphaNumeric,
     is_required: true,
     tag: 'free_text',
     start_char: 12,
@@ -165,8 +166,8 @@ const GRH: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.GRH,
-    input_type: 'numeric',
-    is_required: true,
+    input_type: inputTypeEnum.Numeric,
+    is_required: false,
     tag: 'free_text',
     start_char: 17,
     end_char: 27,
@@ -177,8 +178,8 @@ const GRH: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.GRH,
-    input_type: 'lookup',
-    is_required: true,
+    input_type: inputTypeEnum.Lookup,
+    is_required: false,
     tag: 'free_text',
     start_char: 27,
     end_char: 29,

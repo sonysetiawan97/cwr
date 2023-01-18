@@ -8,7 +8,7 @@ export const OPU: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Alpha,
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 1,
     size: 19,
@@ -80,7 +80,7 @@ export const OPU: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Alpha,
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 79,
     size: 9,
@@ -104,7 +104,7 @@ export const OPU: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Alpha,
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 99,
     size: 14,

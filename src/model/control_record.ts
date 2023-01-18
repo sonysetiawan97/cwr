@@ -1,3 +1,8 @@
+export interface ControlRecordTable {
+  version: string;
+  tag: string;
+}
+
 export interface ControlRecord {
   hdr: HDRVer21 | HDRVer300;
   grh: GRHVer21 | GRHVer300;

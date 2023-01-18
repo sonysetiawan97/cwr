@@ -39,7 +39,7 @@ export const SPT: MapperSeeder[] = [
     end_char: 35,
     field: 'constant',
     description: 'Constant',
-    is_required: false,
+    is_required: true,
   },
   {
     version: versionAvailable.v21,

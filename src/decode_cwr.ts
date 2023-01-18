@@ -5,6 +5,7 @@ import { checkVersion, decodeFileName } from './library/filename';
 import { decodeGrh, decodeGrt, decodeHdr, decodeTrl } from './library/control_record/decode';
 import { versionAvailable } from './enum/version';
 import {
+  ControlRecordTable,
   GRHVer21,
   GRHVer300,
   GRTVer21,
@@ -16,6 +17,8 @@ import {
 } from './model/control_record';
 import { decodeTransactionsDetail } from './library/transactions';
 import { TransactionV21, TransactionV300 } from './model/transaction';
+import { getDataHeader } from './library/fetch/get';
+import { controlRecordEnum } from './enum/control_record';
 
 export const decoderFullPath = async (path: string): Promise<Cwr> => {
   return new Promise(async (resolve, reject) => {
@@ -23,6 +26,11 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
 
     const pathArray: string[] = path.split('/');
     const filename: string = pathArray[pathArray.length - 1];
+
+    let hdr: string = '';
+    let grh: string = '';
+    let grt: string = '';
+    let trl: string = '';
 
     if (file && filename) {
       const file_naming: FileNamingV30 | FileNamingV21 | null = await decodeFileName(filename);
@@ -38,10 +46,29 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
         return reject('Invalid version.');
       }
 
-      const hdr = data.shift();
-      const grh = data.shift();
-      const trl = data.pop();
-      const grt = data.pop();
+      const controlRecordData: ControlRecordTable[] = await getDataHeader(version);
+
+      controlRecordData.map((item) => {
+        const { tag } = item;
+        const index = data.find((d) => {
+          return d.slice(0, 3) === tag;
+        });
+        if (index) {
+          const getResultFromIndex = data.splice(parseInt(index), 1);
+          if (getResultFromIndex) {
+            const [resultData] = getResultFromIndex;
+            if (tag === controlRecordEnum.HDR) {
+              hdr = resultData;
+            } else if (tag === controlRecordEnum.GRH) {
+              grh = resultData;
+            } else if (tag === controlRecordEnum.GRT) {
+              grt = resultData;
+            } else if (tag === controlRecordEnum.TRL) {
+              trl = resultData;
+            }
+          }
+        }
+      });
 
       if (!hdr || !grh || !trl || !grt) {
         return reject('Invalid Control Record.');
@@ -56,10 +83,7 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
         return reject('Invalid Control Record.');
       }
 
-      const transactions: TransactionV21[][] | TransactionV300[][] = await decodeTransactionsDetail(
-        data,
-        version,
-      );
+      const transactions: TransactionV21[][] | TransactionV300[][] = await decodeTransactionsDetail(data, version);
 
       const result: Cwr = {
         ...cwrForm,
@@ -74,7 +98,6 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
         },
         transactions: [...transactions],
       };
-
       return resolve(result);
     }
     return reject('File is not found.');

@@ -1,5 +1,6 @@
 import { mapper } from '../table/mapper';
 import { filename } from '../table/filename';
+import { control_record } from '../table/control_record';
 import * as sqlite3 from 'sqlite3';
 
 const dbFile = __dirname + '/cwr.db';
@@ -11,6 +12,7 @@ const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err: any) => {
 const tables = {
   filename,
   mapper,
+  control_record,
 };
 
 db.serialize(() => {

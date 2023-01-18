@@ -14,7 +14,7 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "DB:init": "npx ts-node ./src/database/database.ts",
-    "DB:seeder": "npx ts-node ./src/seeder/seeder.ts",
+    "DB:seeder": "npx ts-node ./src/database/migrate.ts",
     "run:test": "npx ts-node ./src/test_decoder.ts"
   },
   "files": [
