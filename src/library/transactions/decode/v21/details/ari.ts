@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { ARIV21, formAriV21 } from '../../../../../model/Transactions/v21/details/ari';
+import { formAriV21 } from '../../../../../model/Transactions/v21/details/ari';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const ari = async (text: string, group_name: string): Promise<ARIV21> => {
+export const ari = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const ari = async (text: string, group_name: string): Promise<ARIV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: ARIV21 = {
+  let result: DetailTransaction = {
     ...formAriV21,
   };
 

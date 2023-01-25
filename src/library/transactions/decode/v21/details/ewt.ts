@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { EWTV21, formEwt21 } from '../../../../../model/Transactions/v21/details/ewt';
+import { formEwt21 } from '../../../../../model/Transactions/v21/details/ewt';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const ewt = async (text: string, group_name: string): Promise<EWTV21> => {
+export const ewt = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const ewt = async (text: string, group_name: string): Promise<EWTV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: EWTV21 = {
+  let result: DetailTransaction = {
     ...formEwt21,
   };
 

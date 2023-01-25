@@ -1,6 +1,6 @@
 import { Table } from '../model/model';
 
-export const control_record: Table[] = [
+export const tag_header: Table[] = [
   {
     name: 'id',
     type: 'INTEGER',
@@ -12,6 +12,11 @@ export const control_record: Table[] = [
     name: 'version',
     type: 'VARCHAR',
     length: 12,
+  },
+  {
+    name: 'type',
+    type: 'VARCHAR',
+    length: 50,
   },
   {
     name: 'tag',

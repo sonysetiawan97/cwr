@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { OPUV21, formOpuV21 } from '../../../../../model/Transactions/v21/details/opu';
+import { formOpuV21 } from '../../../../../model/Transactions/v21/details/opu';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const opu = async (text: string, group_name: string): Promise<OPUV21> => {
+export const opu = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const opu = async (text: string, group_name: string): Promise<OPUV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: OPUV21 = {
+  let result: DetailTransaction = {
     ...formOpuV21,
   };
 

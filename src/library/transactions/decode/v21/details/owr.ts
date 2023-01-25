@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { OWRV21, formOwrV21 } from '../../../../../model/Transactions/v21/details/owr';
+import { formOwrV21 } from '../../../../../model/Transactions/v21/details/owr';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const owr = async (text: string, group_name: string): Promise<OWRV21> => {
+export const owr = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const owr = async (text: string, group_name: string): Promise<OWRV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: OWRV21 = {
+  let result: DetailTransaction = {
     ...formOwrV21,
   };
 

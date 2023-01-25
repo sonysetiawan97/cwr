@@ -5,7 +5,7 @@ import { checkVersion, decodeFileName } from './library/filename';
 import { decodeGrh, decodeGrt, decodeHdr, decodeTrl } from './library/control_record/decode';
 import { versionAvailable } from './enum/version';
 import {
-  ControlRecordTable,
+  TagHeaderTable,
   GRHVer21,
   GRHVer300,
   GRTVer21,
@@ -16,9 +16,10 @@ import {
   TRLVer300,
 } from './model/control_record';
 import { decodeTransactionsDetail } from './library/transactions';
-import { TransactionV21, TransactionV300 } from './model/transaction';
+import { Transactions } from './model/transaction';
 import { getDataHeader } from './library/fetch/get';
 import { controlRecordEnum } from './enum/control_record';
+import { TagHeaderEnum } from './enum/type_tag';
 
 export const decoderFullPath = async (path: string): Promise<Cwr> => {
   return new Promise(async (resolve, reject) => {
@@ -46,15 +47,15 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
         return reject('Invalid version.');
       }
 
-      const controlRecordData: ControlRecordTable[] = await getDataHeader(version);
+      const controlRecordData: TagHeaderTable[] = await getDataHeader(version, TagHeaderEnum.CONTROL_HEADER);
 
       controlRecordData.map((item) => {
         const { tag } = item;
-        const index = data.find((d) => {
+        const index = data.findIndex((d) => {
           return d.slice(0, 3) === tag;
         });
-        if (index) {
-          const getResultFromIndex = data.splice(parseInt(index), 1);
+        if (index !== null || index !== undefined) {
+          const getResultFromIndex = data.splice(index, 1);
           if (getResultFromIndex) {
             const [resultData] = getResultFromIndex;
             if (tag === controlRecordEnum.HDR) {
@@ -83,7 +84,7 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
         return reject('Invalid Control Record.');
       }
 
-      const transactions: TransactionV21[][] | TransactionV300[][] = await decodeTransactionsDetail(data, version);
+      const transactions: Transactions[][] = await decodeTransactionsDetail(data, version);
 
       const result: Cwr = {
         ...cwrForm,

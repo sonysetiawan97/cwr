@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { VERV21, formVerV21 } from '../../../../../model/Transactions/v21/details/ver';
+import { formVerV21 } from '../../../../../model/Transactions/v21/details/ver';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const ver = async (text: string, group_name: string): Promise<VERV21> => {
+export const ver = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const ver = async (text: string, group_name: string): Promise<VERV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: VERV21 = {
+  let result: DetailTransaction = {
     ...formVerV21,
   };
 

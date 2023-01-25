@@ -1,5 +1,6 @@
-export interface ControlRecordTable {
+export interface TagHeaderTable {
   version: string;
+  type: string;
   tag: string;
 }
 

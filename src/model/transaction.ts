@@ -69,6 +69,20 @@ import { ISRV300 } from './Transactions/v300/headers/isr';
 import { LICV300 } from './Transactions/v300/headers/lic';
 import { WRKV300 } from './Transactions/v300/headers/wrk';
 
+export interface DetailTransaction {
+  [key: string]: string | number | boolean;
+}
+
+export interface ParentTransactions {
+  tag: string;
+  detail: DetailTransaction;
+}
+
+export interface Transactions {
+  parent: ParentTransactions;
+  children?: Transactions[];
+}
+
 export interface TransactionV21 {
   group: transactionEnumV21 | string;
   values:

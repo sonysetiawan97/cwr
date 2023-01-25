@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { NETV21, formNetV21 } from '../../../../../model/Transactions/v21/details/net';
+import { formNetV21 } from '../../../../../model/Transactions/v21/details/net';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const net = async (text: string, group_name: string): Promise<NETV21> => {
+export const net = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const net = async (text: string, group_name: string): Promise<NETV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: NETV21 = {
+  let result: DetailTransaction = {
     ...formNetV21,
   };
 

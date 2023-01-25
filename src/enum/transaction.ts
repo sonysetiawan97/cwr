@@ -1,3 +1,12 @@
+export enum TransactionHeaderEnumV21 {
+  AGR = 'AGR',
+  NWR = 'NWR',
+  REV = 'REV',
+  ISW = 'ISW',
+  EXC = 'EXC',
+  ACK = 'ACK',
+}
+
 export enum transactionEnumV21 {
   AGR = 'AGR', // Agreement supporting Work Registration
   NWR = 'NWR', // New Works Registration

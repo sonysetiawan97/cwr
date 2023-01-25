@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { NPAV21, formNpaV21 } from '../../../../../model/Transactions/v21/details/npa';
+import { formNpaV21 } from '../../../../../model/Transactions/v21/details/npa';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const npa = async (text: string, group_name: string): Promise<NPAV21> => {
+export const npa = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const npa = async (text: string, group_name: string): Promise<NPAV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: NPAV21 = {
+  let result: DetailTransaction = {
     ...formNpaV21,
   };
 

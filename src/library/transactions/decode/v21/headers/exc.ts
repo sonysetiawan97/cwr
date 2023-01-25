@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { EXCV21, formExcV21 } from '../../../../../model/Transactions/v21/headers/exc';
+import { formExcV21 } from '../../../../../model/Transactions/v21/headers/exc';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const exc = async (text: string, group_name: string): Promise<EXCV21> => {
+export const exc = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const exc = async (text: string, group_name: string): Promise<EXCV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: EXCV21 = {
+  let result: DetailTransaction = {
     ...formExcV21,
   };
 

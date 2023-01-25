@@ -1,12 +1,8 @@
 import { versionAvailable } from '../enum/version';
-import { TransactionV21, TransactionV300 } from '../model/transaction';
+import { Transactions } from '../model/transaction';
 import { decodeTransactionsV21 } from './transactions/decode/v21';
-import { decodeTransactionsV300 } from './transactions/decode/v300';
 
-export const decodeTransactionsDetail = async (
-  data: string[],
-  version: string,
-): Promise<TransactionV21[][] | TransactionV300[][]> => {
+export const decodeTransactionsDetail = async (data: string[], version: string): Promise<Transactions[][]> => {
   const listTransactionIndex: number[] = [];
   const listTransactionString: string[][] = [];
 
@@ -14,7 +10,8 @@ export const decodeTransactionsDetail = async (
   headerTransaction.map((item) => {
     const regex = new RegExp(item);
     data.map((value, index) => {
-      const transaction = regex.test(value);
+      const text = value.slice(0, 3);
+      const transaction = regex.test(text);
       if (transaction) {
         listTransactionIndex.push(index);
       }
@@ -29,9 +26,10 @@ export const decodeTransactionsDetail = async (
 
   if (version === versionAvailable.v21) {
     return await decodeTransactionsV21(listTransactionString);
-  } else if (version === versionAvailable.v300) {
-    return await decodeTransactionsV300(listTransactionString);
   }
+  // else if (version === versionAvailable.v300) {
+  //   return await decodeTransactionsV300(listTransactionString);
+  // }
 
   return [];
 };

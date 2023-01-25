@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { ALTV21, formAltV21 } from '../../../../../model/Transactions/v21/details/alt';
+import { formAltV21 } from '../../../../../model/Transactions/v21/details/alt';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const alt = async (text: string, group_name: string): Promise<ALTV21> => {
+export const alt = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const alt = async (text: string, group_name: string): Promise<ALTV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: ALTV21 = {
+  let result: DetailTransaction = {
     ...formAltV21,
   };
 

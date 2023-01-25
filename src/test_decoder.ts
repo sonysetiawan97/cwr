@@ -39,15 +39,5 @@ const encode = async (filename: EncodeFileNamingV21, data: CwrEncodeData): Promi
   }
 };
 
-const startDate = new Date();
-console.log(`${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}:${startDate.getMilliseconds()}`);
-
 decode(fullpath);
-
-const midTime = new Date();
-console.log(`${midTime.getHours()}:${midTime.getMinutes()}:${midTime.getSeconds()}:${midTime.getMilliseconds()}`);
-
 encode(filename, data);
-
-const endDate = new Date();
-console.log(`${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}:${endDate.getMilliseconds()}`);

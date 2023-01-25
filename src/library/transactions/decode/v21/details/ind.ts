@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { INDV21, formIndV21 } from '../../../../../model/Transactions/v21/details/ind';
+import { formIndV21 } from '../../../../../model/Transactions/v21/details/ind';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const ind = async (text: string, group_name: string): Promise<INDV21> => {
+export const ind = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const ind = async (text: string, group_name: string): Promise<INDV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: INDV21 = {
+  let result: DetailTransaction = {
     ...formIndV21,
   };
 

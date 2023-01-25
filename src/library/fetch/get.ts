@@ -4,7 +4,9 @@ import { versionAvailable } from '../../enum/version';
 import { transactionEnumV21 } from '../../enum/transaction';
 import { Mapper } from '../../model/mapper';
 import { Params, Where } from '../../model/model';
-import { ControlRecordTable } from '../../model/control_record';
+import { TagHeaderTable } from '../../model/control_record';
+import { TableEnum } from '../../enum/table';
+import { TagHeaderEnum } from '../../enum/type_tag';
 
 export const getDataMapper = async (version: versionAvailable, group_name: controlRecordEnum): Promise<Mapper[]> => {
   const table: string = 'mapper';
@@ -35,14 +37,15 @@ export const getDataMapperTransactionsVer21 = async (
   return stacks;
 };
 
-export const getDataHeader = async (version: versionAvailable): Promise<ControlRecordTable[]> => {
-  const table: string = 'control_record';
+export const getDataHeader = async (version: versionAvailable, type: TagHeaderEnum): Promise<TagHeaderTable[]> => {
+  const table: string = TableEnum.TAG_HEADER;
   const where: Where = {
     version,
+    type,
   };
   const params: Params = {
     where,
   };
-  const stacks = (await getData(table, params)) as ControlRecordTable[];
+  const stacks = (await getData(table, params)) as TagHeaderTable[];
   return stacks;
 };

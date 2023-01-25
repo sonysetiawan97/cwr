@@ -1,10 +1,11 @@
 import { getData } from '../../../../../database/select';
 import { versionAvailable } from '../../../../../enum/version';
-import { ACKV21, formAckV21 } from '../../../../../model/Transactions/v21/headers/ack';
+import { formAckV21 } from '../../../../../model/Transactions/v21/headers/ack';
 import { Mapper } from '../../../../../model/mapper';
 import { Params, Where } from '../../../../../model/model';
+import { DetailTransaction } from '../../../../../model/transaction';
 
-export const ack = async (text: string, group_name: string): Promise<ACKV21> => {
+export const ack = async (text: string, group_name: string): Promise<DetailTransaction> => {
   const table: string = 'mapper';
   const version: string = versionAvailable.v21;
   const where: Where = {
@@ -16,7 +17,7 @@ export const ack = async (text: string, group_name: string): Promise<ACKV21> => 
   };
   const stacks = (await getData(table, params)) as Mapper[];
 
-  let result: ACKV21 = {
+  let result: DetailTransaction = {
     ...formAckV21,
   };
 
