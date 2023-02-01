@@ -1,4 +1,4 @@
-import { transactionEnumV21, transactionEnumV300 } from '../enum/transaction';
+import { TransactionEnumV21, transactionEnumV300 } from '../enum/transaction';
 import { ALTV21 } from './Transactions/v21/details/alt';
 import { ARIV21 } from './Transactions/v21/details/ari';
 import { COMV21 } from './Transactions/v21/details/com';
@@ -79,12 +79,12 @@ export interface ParentTransactions {
 }
 
 export interface Transactions {
-  parent: ParentTransactions;
+  parent?: ParentTransactions;
   children?: Transactions[];
 }
 
 export interface TransactionV21 {
-  group: transactionEnumV21 | string;
+  group: TransactionEnumV21 | string;
   values:
     | null
     | ACKV21

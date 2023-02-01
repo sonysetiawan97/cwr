@@ -1,7 +1,7 @@
 import { getData } from '../../database/select';
 import { controlRecordEnum } from '../../enum/control_record';
 import { versionAvailable } from '../../enum/version';
-import { transactionEnumV21 } from '../../enum/transaction';
+import { TransactionEnumV21 } from '../../enum/transaction';
 import { Mapper } from '../../model/mapper';
 import { Params, Where } from '../../model/model';
 import { TagHeaderTable } from '../../model/control_record';
@@ -23,7 +23,7 @@ export const getDataMapper = async (version: versionAvailable, group_name: contr
 
 export const getDataMapperTransactionsVer21 = async (
   version: versionAvailable,
-  group_name: transactionEnumV21,
+  group_name: TransactionEnumV21,
 ): Promise<Mapper[]> => {
   const table: string = 'mapper';
   const where: Where = {

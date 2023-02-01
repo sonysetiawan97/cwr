@@ -1,10 +1,10 @@
-import { transactionEnumV21 } from '../../../../../enum/transaction';
+import { TransactionEnumV21 } from '../../../../../enum/transaction';
 import { versionAvailable } from '../../../../../enum/version';
 import { NPRV21 } from '../../../../../model/Transactions/v21/details/npr';
 import { getDataMapperTransactionsVer21 } from '../../../../fetch/get';
 
 export const npr = async (data: NPRV21): Promise<string> => {
-  const group: transactionEnumV21 = transactionEnumV21.NPR;
+  const group: TransactionEnumV21 = TransactionEnumV21.NPR;
   const version: versionAvailable = versionAvailable.v21;
   const stacks = await getDataMapperTransactionsVer21(version, group);
 

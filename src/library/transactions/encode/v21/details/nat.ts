@@ -1,10 +1,10 @@
-import { transactionEnumV21 } from '../../../../../enum/transaction';
+import { TransactionEnumV21 } from '../../../../../enum/transaction';
 import { versionAvailable } from '../../../../../enum/version';
 import { NATV21 } from '../../../../../model/Transactions/v21/details/nat';
 import { getDataMapperTransactionsVer21 } from '../../../../fetch/get';
 
 export const nat = async (data: NATV21): Promise<string> => {
-  const group: transactionEnumV21 = transactionEnumV21.NAT;
+  const group: TransactionEnumV21 = TransactionEnumV21.NAT;
   const version: versionAvailable = versionAvailable.v21;
   const stacks = await getDataMapperTransactionsVer21(version, group);
 

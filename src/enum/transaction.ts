@@ -7,7 +7,7 @@ export enum TransactionHeaderEnumV21 {
   ACK = 'ACK',
 }
 
-export enum transactionEnumV21 {
+export enum TransactionEnumV21 {
   AGR = 'AGR', // Agreement supporting Work Registration
   NWR = 'NWR', // New Works Registration
   REV = 'REV', // Revised Registration

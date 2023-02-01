@@ -1,5 +1,5 @@
 import { joinEnum } from '../../../../enum/join';
-import { transactionEnumV21 } from '../../../../enum/transaction';
+import { TransactionEnumV21 } from '../../../../enum/transaction';
 import { versionAvailable } from '../../../../enum/version';
 import { ARIV21 } from '../../../../model/Transactions/v21/details/ari';
 import { COMV21 } from '../../../../model/Transactions/v21/details/com';
@@ -76,73 +76,73 @@ export const encodeTransactionsVer21 = async (datas: TransactionV21[][]): Promis
         return Promise.all(
           data.map(async (items) => {
             const { group, values } = items;
-            if (group === transactionEnumV21.ACK) {
+            if (group === TransactionEnumV21.ACK) {
               return await ack(values as ACKV21);
-            } else if (group === transactionEnumV21.AGR) {
+            } else if (group === TransactionEnumV21.AGR) {
               return await agr(values as AGRV21);
-            } else if (group === transactionEnumV21.EXC) {
+            } else if (group === TransactionEnumV21.EXC) {
               return await exc(values as EXCV21);
-            } else if (group === transactionEnumV21.ISW) {
+            } else if (group === TransactionEnumV21.ISW) {
               return await isw(values as ISWV21);
-            } else if (group === transactionEnumV21.NWR) {
+            } else if (group === TransactionEnumV21.NWR) {
               return await nwr(values as NWRV21);
-            } else if (group === transactionEnumV21.REV) {
+            } else if (group === TransactionEnumV21.REV) {
               return await rev(values as REVV21);
-            } else if (group === transactionEnumV21.ALT) {
+            } else if (group === TransactionEnumV21.ALT) {
               return await agr(values as AGRV21);
-            } else if (group === transactionEnumV21.ARI) {
+            } else if (group === TransactionEnumV21.ARI) {
               return await ari(values as ARIV21);
-            } else if (group === transactionEnumV21.COM) {
+            } else if (group === TransactionEnumV21.COM) {
               return await com(values as COMV21);
-            } else if (group === transactionEnumV21.EWT) {
+            } else if (group === TransactionEnumV21.EWT) {
               return await ewt(values as EWTV21);
-            } else if (group === transactionEnumV21.IND) {
+            } else if (group === TransactionEnumV21.IND) {
               return await ind(values as INDV21);
-            } else if (group === transactionEnumV21.INS) {
+            } else if (group === TransactionEnumV21.INS) {
               return await ins(values as INSV21);
-            } else if (group === transactionEnumV21.IPA) {
+            } else if (group === TransactionEnumV21.IPA) {
               return await ipa(values as IPAV21);
-            } else if (group === transactionEnumV21.MSG) {
+            } else if (group === TransactionEnumV21.MSG) {
               return await msg(values as MSGV21);
-            } else if (group === transactionEnumV21.NAT) {
+            } else if (group === TransactionEnumV21.NAT) {
               return await nat(values as NATV21);
-            } else if (group === transactionEnumV21.NCT) {
+            } else if (group === TransactionEnumV21.NCT) {
               return await nct(values as NCTV21);
-            } else if (group === transactionEnumV21.NET) {
+            } else if (group === TransactionEnumV21.NET) {
               return await net(values as NETV21);
-            } else if (group === transactionEnumV21.NOW) {
+            } else if (group === TransactionEnumV21.NOW) {
               return await now(values as NOWV21);
-            } else if (group === transactionEnumV21.NPA) {
+            } else if (group === TransactionEnumV21.NPA) {
               return await npa(values as NPAV21);
-            } else if (group === transactionEnumV21.NPR) {
+            } else if (group === TransactionEnumV21.NPR) {
               return await npr(values as NPRV21);
-            } else if (group === transactionEnumV21.NVT) {
+            } else if (group === TransactionEnumV21.NVT) {
               return await nvt(values as NVTV21);
-            } else if (group === transactionEnumV21.NWN) {
+            } else if (group === TransactionEnumV21.NWN) {
               return await nwn(values as NWNV21);
-            } else if (group === transactionEnumV21.OPU) {
+            } else if (group === TransactionEnumV21.OPU) {
               return await opu(values as OPUV21);
-            } else if (group === transactionEnumV21.ORN) {
+            } else if (group === TransactionEnumV21.ORN) {
               return await orn(values as ORNV21);
-            } else if (group === transactionEnumV21.OWR) {
+            } else if (group === TransactionEnumV21.OWR) {
               return await owr(values as OWRV21);
-            } else if (group === transactionEnumV21.PER) {
+            } else if (group === TransactionEnumV21.PER) {
               return await per(values as PERV21);
-            } else if (group === transactionEnumV21.PWR) {
+            } else if (group === TransactionEnumV21.PWR) {
               return await pwr(values as PWRV21);
-            } else if (group === transactionEnumV21.REC) {
+            } else if (group === TransactionEnumV21.REC) {
               return await rec(values as RECV21);
-            } else if (group === transactionEnumV21.SPT) {
+            } else if (group === TransactionEnumV21.SPT) {
               return await spt(values as SPTV21);
-            } else if (group === transactionEnumV21.SPU) {
+            } else if (group === TransactionEnumV21.SPU) {
               return await spu(values as SPUV21);
-            } else if (group === transactionEnumV21.SWR) {
+            } else if (group === TransactionEnumV21.SWR) {
               return await swr(values as SWRV21);
-            } else if (group === transactionEnumV21.SWT) {
+            } else if (group === TransactionEnumV21.SWT) {
               return await swt(values as SWTV21);
-            } else if (group === transactionEnumV21.TER) {
+            } else if (group === TransactionEnumV21.TER) {
               return await ter(values as TERV21);
-            } else if (group === transactionEnumV21.VER) {
+            } else if (group === TransactionEnumV21.VER) {
               return await ver(values as VERV21);
             }
           }),
