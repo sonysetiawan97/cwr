@@ -34,7 +34,7 @@ export interface EncodeFileNamingV21 {
   sequence: string;
   society: string;
   receiver: string;
-  version: versionAvailable;
+  version: string;
 }
 
 export const formEncodeFileNamingV21: EncodeFileNamingV21 = {

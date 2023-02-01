@@ -9,6 +9,7 @@ import {
 } from '../model/filename';
 import { Params, Where } from '../model/model';
 import { versionAvailable } from '../enum/version';
+import { CwrEncodeFilename } from '../model/encode/v21/filename';
 
 export const decodeFileName = async (filename: string): Promise<FileNamingV21 | FileNamingV30 | null> => {
   const availableVersion: string[] = ['.V21', '_V3-0-0.'];
@@ -46,7 +47,7 @@ export const checkVersion = (filename: string): versionAvailable | null => {
   return null;
 };
 
-export const encodeFileName = (filename: EncodeFileNamingV21): string | null => {
+export const encodeFileName = (filename: CwrEncodeFilename): string => {
   const { version } = filename;
   if (version === versionAvailable.v21) {
     return createFileNameVer21(filename);
@@ -54,7 +55,7 @@ export const encodeFileName = (filename: EncodeFileNamingV21): string | null => 
     return '';
   }
 
-  return null;
+  return '';
 };
 
 const fileNameVer21 = async (filename: string): Promise<FileNamingV21> => {
@@ -153,13 +154,14 @@ const fileNameVer30 = async (filename: string): Promise<FileNamingV30> => {
   return result;
 };
 
-const createFileNameVer21 = (filename: EncodeFileNamingV21): string => {
+const createFileNameVer21 = (filename: CwrEncodeFilename): string => {
   const date = new Date();
   const identity = 'CW';
   const year = date.getFullYear().toString().substring(2);
   const receiver = `_${filename.receiver}`;
   const version = `.${filename.version}`;
-  const file: FileNamingV21 = { ...FormFileNamingV21, ...filename, year, identity, receiver, version };
+  const sequence = ('0000' + filename.sequence).slice(-4);
+  const file: FileNamingV21 = { ...FormFileNamingV21, ...filename, year, identity, sequence, receiver, version };
 
   return Object.values(file)
     .map((item) => item)

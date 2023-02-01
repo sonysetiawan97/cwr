@@ -1,9 +1,10 @@
 import { DecodeCwr, EncodeCwr } from './index';
-import { CwrEncode, CwrEncodeData, Cwr } from './model/cwr';
+import { Cwr } from './model/cwr';
 import { EncodeFileNamingV21 } from './model/filename';
-import { filename, data } from './__files__/cwr';
+import { cwr } from './__files__/cwr';
 import * as path from 'path';
 import * as fs from 'fs';
+import { CWREncode, CWREncodeResult } from './model/encode/v21';
 
 const fileName = 'CW200046026_MME.V21';
 const bucket = '/__files__/';
@@ -25,9 +26,9 @@ const decode = async (fullpath: string): Promise<Cwr> => {
   }
 };
 
-const encode = async (filename: EncodeFileNamingV21, data: CwrEncodeData): Promise<CwrEncode> => {
+const encode = async (data: CWREncode): Promise<CWREncodeResult> => {
   try {
-    const result: CwrEncode = await EncodeCwr(filename, data);
+    const result: CWREncodeResult = await EncodeCwr(data);
 
     const filePath = path.join(__dirname, `/${basePathResult}/encode/${result.filename}`);
 
@@ -40,4 +41,4 @@ const encode = async (filename: EncodeFileNamingV21, data: CwrEncodeData): Promi
 };
 
 decode(fullpath);
-encode(filename, data);
+encode(cwr);

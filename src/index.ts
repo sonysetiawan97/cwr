@@ -1,17 +1,16 @@
 import { decoderFullPath } from './decode_cwr';
 import { encodeCwr } from './encode_cwr';
-import { CwrEncode, CwrEncodeData, Cwr } from './model/cwr';
-import { EncodeFileNamingV21 } from './model/filename';
-import * as path from 'path';
+import { CwrEncode, Cwr } from './model/cwr';
+import { CWREncode, CWREncodeResult } from './model/encode/v21';
 
 export const DecodeCwr = async (fullpath: string) => {
   const decode: Cwr = await decoderFullPath(fullpath);
   return decode;
 };
 
-export const EncodeCwr = async (filename: EncodeFileNamingV21, data: CwrEncodeData): Promise<CwrEncode> => {
+export const EncodeCwr = async (data: CWREncode): Promise<CWREncodeResult> => {
   try {
-    const result: CwrEncode = await encodeCwr(filename, data);
+    const result: CwrEncode = await encodeCwr(data);
     return result;
   } catch (e) {
     throw e;

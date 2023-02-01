@@ -1,10 +1,11 @@
+import { inputTypeEnum } from '../enum/input_type';
 import { versionAvailable } from '../enum/version';
 import { FilenameSeeder } from '../model/filename';
 
 export const filename: FilenameSeeder[] = [
   {
     version: versionAvailable.v21,
-    input_type: 'alpha',
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 1,
     end_char: 3,
@@ -13,7 +14,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v21,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 3,
     end_char: 5,
@@ -22,7 +23,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v21,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.Numeric,
     tag: 'free_text',
     start_char: 5,
     end_char: 9,
@@ -31,7 +32,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v21,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 9,
     end_char: 12,
@@ -40,7 +41,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v21,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 13,
     end_char: 16,
@@ -50,7 +51,7 @@ export const filename: FilenameSeeder[] = [
 
   {
     version: versionAvailable.v300,
-    input_type: 'alpha',
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 1,
     end_char: 3,
@@ -59,7 +60,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v300,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 3,
     end_char: 5,
@@ -68,7 +69,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v300,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.Numeric,
     tag: 'free_text',
     start_char: 5,
     end_char: 9,
@@ -77,7 +78,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v300,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 0,
     end_char: 0,
@@ -86,7 +87,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v300,
-    input_type: 'alpha_numeric',
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 0,
     end_char: 0,
@@ -95,7 +96,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v300,
-    input_type: 'alpha_numeric',
+    input_type: inputTypeEnum.AlphaNumeric,
     tag: 'free_text',
     start_char: 0,
     end_char: 0,
@@ -104,7 +105,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v300,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.Numeric,
     tag: 'free_text',
     start_char: 0,
     end_char: 0,
@@ -113,7 +114,7 @@ export const filename: FilenameSeeder[] = [
   },
   {
     version: versionAvailable.v300,
-    input_type: 'numeric',
+    input_type: inputTypeEnum.Numeric,
     tag: 'free_text',
     start_char: 0,
     end_char: 0,

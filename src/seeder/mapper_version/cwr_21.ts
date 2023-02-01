@@ -31,7 +31,7 @@ const HDR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name: controlRecordEnum.HDR,
-    input_type: inputTypeEnum.AlphaNumeric,
+    input_type: inputTypeEnum.Numeric,
     is_required: true,
     tag: 'free_text',
     start_char: 6,
