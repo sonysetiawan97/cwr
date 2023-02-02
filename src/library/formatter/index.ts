@@ -4,7 +4,7 @@ import { formatNumberType } from './number';
 import { formatStringType } from './text';
 import { formatTimeType } from './time';
 
-export const formatCheckType = (text: string | number, size: number, input_type: string) => {
+export const formatCheckType = (text: string | number | boolean, size: number, input_type: string) => {
   if (input_type == inputTypeEnum.Numeric) {
     return formatNumberType(parseInt(text.toString()), size);
   }

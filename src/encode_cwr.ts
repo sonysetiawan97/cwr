@@ -5,8 +5,6 @@ import { encodeFileName } from './library/filename';
 import { encodeTransactionsVer21 } from './library/transactions/encode/v21';
 import { formCwrEncode } from './model/cwr';
 import { CWREncode, CWREncodeResult } from './model/encode/v21';
-import { TransactionV21 } from './model/transaction';
-import { filename } from './table/filename';
 
 export const encodeCwr = async (data: CWREncode): Promise<CWREncodeResult> => {
   return new Promise(async (resolve, reject) => {
@@ -17,13 +15,13 @@ export const encodeCwr = async (data: CWREncode): Promise<CWREncodeResult> => {
       let result: CWREncodeResult = { ...formCwrEncode };
 
       if (version === versionAvailable.v21) {
-        const { controlHeader } = data;
+        const { controlHeader, transactions } = data;
         const filenameResult: string = encodeFileName(filename);
-        const resultControlRecord: string[] = await encodeControlRecordVer21(controlHeader);
-        // const resultTransactions: string[] = await encodeTransactionsVer21(transactions);
-        const finalResult: string[] = [...resultControlRecord];
+        const controlHeaderResult: string[] = await encodeControlRecordVer21(controlHeader);
+        const transactionsResult: string[] = await encodeTransactionsVer21(transactions);
+        const finalResult: string[] = [...controlHeaderResult];
 
-        // finalResult.splice(2, 0, ...resultTransactions);
+        finalResult.splice(2, 0, ...transactionsResult);
 
         const finalData: string = finalResult.join(joinEnum.LineBreak);
 
