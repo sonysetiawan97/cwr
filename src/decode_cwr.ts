@@ -47,6 +47,8 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
         return reject('Invalid version.');
       }
 
+      
+
       const controlRecordData: TagHeaderTable[] = await getDataHeader(version, TagHeaderEnum.CONTROL_HEADER);
 
       controlRecordData.map((item) => {

@@ -4,8 +4,12 @@ import { CwrEncode, Cwr } from './model/cwr';
 import { CWREncode, CWREncodeResult } from './model/encode/v21';
 
 export const DecodeCwr = async (fullpath: string) => {
-  const decode: Cwr = await decoderFullPath(fullpath);
-  return decode;
+  try {
+    const decode: Cwr = await decoderFullPath(fullpath);
+    return decode;
+  } catch (e) {
+    throw e;
+  }
 };
 
 export const EncodeCwr = async (data: CWREncode): Promise<CWREncodeResult> => {
