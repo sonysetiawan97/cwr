@@ -5,6 +5,7 @@ export enum inputTypeEnum {
   Flag = 'flag',
   Date = 'date',
   Numeric = 'numeric',
+  Numeric999v99 = 'numeric_999v99',
   Time = 'time',
   Duration = 'duration',
   List = 'list',

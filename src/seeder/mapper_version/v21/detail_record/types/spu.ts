@@ -128,7 +128,7 @@ export const SPU: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Numeric,
+    input_type: inputTypeEnum.Numeric999v99,
     tag: 'free_text',
     start_char: 116,
     size: 5,
@@ -152,7 +152,7 @@ export const SPU: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Numeric,
+    input_type: inputTypeEnum.Numeric999v99,
     tag: 'free_text',
     start_char: 124,
     size: 5,
@@ -176,7 +176,7 @@ export const SPU: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Numeric,
+    input_type: inputTypeEnum.Numeric999v99,
     tag: 'free_text',
     start_char: 132,
     size: 5,

@@ -1,18 +1,18 @@
 import { controlRecordEnum } from '../../../enum/control_record';
 import { TransactionHeaderEnumV21 } from '../../../enum/transaction';
 
-export const validationFileLevel = (data: string[]) => {
+export const validationFileLevel = (data: string[]): Promise<boolean> => {
   const [hdr, grh, transactionHeader] = data;
   const trl = data[data.length - 1];
 
-  return new Promise((resolve, reject) => {
-    if (firstLineMustHDR(hdr)) return resolve(true);
-    if (secondLineMustGRH(grh)) return resolve(true);
-    if (everyGRHNotPrecededByGRT(hdr)) return resolve(true);
-    if (lastLineMustTRL(trl)) return resolve(true);
-    if (grhFollowedByTransactionHeader(transactionHeader)) return resolve(true);
+  return new Promise((resolve) => {
+    if (!firstLineMustHDR(hdr)) return resolve(false);
+    if (!secondLineMustGRH(grh)) return resolve(false);
+    if (!everyGRHNotPrecededByGRT(hdr)) return resolve(false);
+    if (!lastLineMustTRL(trl)) return resolve(false);
+    if (!grhFollowedByTransactionHeader(transactionHeader)) return resolve(false);
 
-    reject('Validation File Failed!');
+    return resolve(false);
   });
 };
 

@@ -44,7 +44,7 @@ export const SPT: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Numeric,
+    input_type: inputTypeEnum.Numeric999v99,
     tag: 'free_text',
     start_char: 35,
     size: 5,
@@ -56,7 +56,7 @@ export const SPT: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Numeric,
+    input_type: inputTypeEnum.Numeric999v99,
     tag: 'free_text',
     start_char: 40,
     size: 5,
@@ -68,7 +68,7 @@ export const SPT: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Numeric,
+    input_type: inputTypeEnum.Numeric999v99,
     tag: 'free_text',
     start_char: 45,
     size: 5,

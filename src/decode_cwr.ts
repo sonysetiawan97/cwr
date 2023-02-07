@@ -20,6 +20,8 @@ import { Transactions } from './model/transaction';
 import { getDataHeader } from './library/fetch/get';
 import { controlRecordEnum } from './enum/control_record';
 import { TagHeaderEnum } from './enum/type_tag';
+import { validationFileLevel } from './library/validation/file';
+import { validationMessageEnum } from './enum/validation_message';
 
 export const decoderFullPath = async (path: string): Promise<Cwr> => {
   return new Promise(async (resolve, reject) => {
@@ -47,7 +49,11 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
         return reject('Invalid version.');
       }
 
-      
+      const isValidFileLevel: boolean = await validationFileLevel(data);
+
+      if (!isValidFileLevel) {
+        return reject(validationMessageEnum.FILELEVEL);
+      }
 
       const controlRecordData: TagHeaderTable[] = await getDataHeader(version, TagHeaderEnum.CONTROL_HEADER);
 
@@ -62,12 +68,28 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
             const [resultData] = getResultFromIndex;
             if (tag === controlRecordEnum.HDR) {
               hdr = resultData;
+              const isValidHdrLevel: boolean = false;
+              if (!isValidHdrLevel) {
+                reject(validationMessageEnum.HDRLEVEL);
+              }
             } else if (tag === controlRecordEnum.GRH) {
               grh = resultData;
+              const isValidGrhLevel: boolean = false;
+              if (!isValidGrhLevel) {
+                reject(validationMessageEnum.HDRLEVEL);
+              }
             } else if (tag === controlRecordEnum.GRT) {
               grt = resultData;
+              const isValidGrtLevel: boolean = false;
+              if (!isValidGrtLevel) {
+                reject(validationMessageEnum.HDRLEVEL);
+              }
             } else if (tag === controlRecordEnum.TRL) {
               trl = resultData;
+              const isValidTrlLevel: boolean = false;
+              if (!isValidTrlLevel) {
+                reject(validationMessageEnum.HDRLEVEL);
+              }
             }
           }
         }

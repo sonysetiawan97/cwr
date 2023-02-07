@@ -116,7 +116,7 @@ export const OWR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Numeric,
+    input_type: inputTypeEnum.Numeric999v99,
     tag: 'free_text',
     start_char: 130,
     size: 5,
@@ -140,7 +140,7 @@ export const OWR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Numeric,
+    input_type: inputTypeEnum.Numeric999v99,
     tag: 'free_text',
     start_char: 138,
     size: 5,
@@ -164,7 +164,7 @@ export const OWR: MapperSeeder[] = [
   {
     version: versionAvailable.v21,
     group_name,
-    input_type: inputTypeEnum.Numeric,
+    input_type: inputTypeEnum.Numeric999v99,
     tag: 'free_text',
     start_char: 146,
     size: 5,
