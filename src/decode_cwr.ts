@@ -22,6 +22,7 @@ import { controlRecordEnum } from './enum/control_record';
 import { TagHeaderEnum } from './enum/type_tag';
 import { validationFileLevel } from './library/validation/file';
 import { validationMessageEnum } from './enum/validation_message';
+import { validationHDRLevel } from './library/validation/control_header/hdr';
 
 export const decoderFullPath = async (path: string): Promise<Cwr> => {
   return new Promise(async (resolve, reject) => {
@@ -57,7 +58,7 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
 
       const controlRecordData: TagHeaderTable[] = await getDataHeader(version, TagHeaderEnum.CONTROL_HEADER);
 
-      controlRecordData.map((item) => {
+      controlRecordData.map(async (item) => {
         const { tag } = item;
         const index = data.findIndex((d) => {
           return d.slice(0, 3) === tag;
@@ -68,27 +69,27 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
             const [resultData] = getResultFromIndex;
             if (tag === controlRecordEnum.HDR) {
               hdr = resultData;
-              const isValidHdrLevel: boolean = false;
+              const isValidHdrLevel: boolean = await validationHDRLevel(hdr);
               if (!isValidHdrLevel) {
                 reject(validationMessageEnum.HDRLEVEL);
               }
             } else if (tag === controlRecordEnum.GRH) {
               grh = resultData;
-              const isValidGrhLevel: boolean = false;
+              const isValidGrhLevel: boolean = true;
               if (!isValidGrhLevel) {
-                reject(validationMessageEnum.HDRLEVEL);
+                reject(validationMessageEnum.GRHLEVEL);
               }
             } else if (tag === controlRecordEnum.GRT) {
               grt = resultData;
-              const isValidGrtLevel: boolean = false;
+              const isValidGrtLevel: boolean = true;
               if (!isValidGrtLevel) {
-                reject(validationMessageEnum.HDRLEVEL);
+                reject(validationMessageEnum.GRTLEVEL);
               }
             } else if (tag === controlRecordEnum.TRL) {
               trl = resultData;
-              const isValidTrlLevel: boolean = false;
+              const isValidTrlLevel: boolean = true;
               if (!isValidTrlLevel) {
-                reject(validationMessageEnum.HDRLEVEL);
+                reject(validationMessageEnum.TRLLEVEL);
               }
             }
           }
