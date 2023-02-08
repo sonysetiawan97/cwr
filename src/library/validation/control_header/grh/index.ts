@@ -2,9 +2,9 @@ import { controlRecordEnum } from '../../../../enum/control_record';
 import { validationMessageEnum } from '../../../../enum/validation_message';
 import { ifTagDateMustValid, ifTagMatchThenNeedRequiredAnotherTag, ifTagMatchThenValid } from '../../functions';
 
-export const validationHDRLevel = async (text: string): Promise<boolean> => {
+export const validationGRHLevel = async (text: string): Promise<boolean> => {
   return new Promise((resolve, reject) => {
-    if (tagMustBeHDR(text)) return resolve(true);
+    if (tagMustBeGRH(text)) return resolve(true);
     if (checkSenderType(text)) return resolve(true);
     if (checkSenderIdTypePbWrAa(text)) return resolve(true);
     if (checkSenderIdTypePB(text)) return resolve(true);
@@ -21,8 +21,8 @@ export const validationHDRLevel = async (text: string): Promise<boolean> => {
   });
 };
 
-const tagMustBeHDR = (text: string): boolean => {
-  const mustEqual = controlRecordEnum.HDR;
+const tagMustBeGRH = (text: string): boolean => {
+  const mustEqual = controlRecordEnum.GRH;
   return ifTagMatchThenValid(text, 0, 3, mustEqual);
 };
 

@@ -23,6 +23,7 @@ import { TagHeaderEnum } from './enum/type_tag';
 import { validationFileLevel } from './library/validation/file';
 import { validationMessageEnum } from './enum/validation_message';
 import { validationHDRLevel } from './library/validation/control_header/hdr';
+import { validationGRHLevel } from './library/validation/control_header/grh';
 
 export const decoderFullPath = async (path: string): Promise<Cwr> => {
   return new Promise(async (resolve, reject) => {
@@ -75,7 +76,7 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
               }
             } else if (tag === controlRecordEnum.GRH) {
               grh = resultData;
-              const isValidGrhLevel: boolean = true;
+              const isValidGrhLevel: boolean = await validationGRHLevel(grh);
               if (!isValidGrhLevel) {
                 reject(validationMessageEnum.GRHLEVEL);
               }
