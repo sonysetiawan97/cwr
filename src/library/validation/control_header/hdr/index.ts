@@ -4,20 +4,20 @@ import { ifTagDateMustValid, ifTagMatchThenNeedRequiredAnotherTag, ifTagMatchThe
 
 export const validationHDRLevel = async (text: string): Promise<boolean> => {
   return new Promise((resolve, reject) => {
-    if (tagMustBeHDR(text)) return resolve(true);
-    if (checkSenderType(text)) return resolve(true);
-    if (checkSenderIdTypePbWrAa(text)) return resolve(true);
-    if (checkSenderIdTypePB(text)) return resolve(true);
-    if (checkSenderIdTypeSo(text)) return resolve(true);
-    if (checkSenderIdTypeAa(text)) return resolve(true);
-    if (checkSenderIdTypeAaSenderName(text)) return resolve(true);
-    if (checkEDIStandardVersionNumber(text)) return resolve(true);
-    if (checkCreationDate(text)) return resolve(true);
-    if (checkTransmisionDate(text)) return resolve(true);
-    if (checkSenderIdTypePBSenderName(text)) return resolve(true);
-    if (checkSenderIdTypeWR(text)) return resolve(true);
+    if (!tagMustBeHDR(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkSenderType(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkSenderIdTypePbWrAa(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkSenderIdTypePB(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkSenderIdTypeSo(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkSenderIdTypeAa(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkSenderIdTypeAaSenderName(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkEDIStandardVersionNumber(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkCreationDate(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkTransmisionDate(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkSenderIdTypePBSenderName(text)) return reject(validationMessageEnum.HDRLEVEL);
+    if (!checkSenderIdTypeWR(text)) return reject(validationMessageEnum.HDRLEVEL);
 
-    return reject(validationMessageEnum.GRHLEVEL);
+    return resolve(true);
   });
 };
 
