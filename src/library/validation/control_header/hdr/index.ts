@@ -1,6 +1,6 @@
 import { controlRecordEnum } from '../../../../enum/control_record';
 import { validationMessageEnum } from '../../../../enum/validation_message';
-import { ifTagDateMustValid, ifTagMatchThenNeedRequiredAnotherTag, ifTagMatchThenValid } from '../../functions';
+import { ifTagDateMustValid, ifTagMatchThenNeedRequiredAnotherTag, ifTagMatchThenCheckValid } from '../../functions';
 
 export const validationHDRLevel = async (text: string): Promise<boolean> => {
   return new Promise((resolve, reject) => {
@@ -23,12 +23,12 @@ export const validationHDRLevel = async (text: string): Promise<boolean> => {
 
 const tagMustBeHDR = (text: string): boolean => {
   const mustEqual = controlRecordEnum.HDR;
-  return ifTagMatchThenValid(text, 0, 3, mustEqual);
+  return ifTagMatchThenCheckValid(text, 0, 3, mustEqual);
 };
 
 const checkSenderType = (text: string): boolean => {
   const mustEqual = ['PB', 'SO', 'WR', 'AA'];
-  return ifTagMatchThenValid(text, 0, 3, mustEqual);
+  return ifTagMatchThenCheckValid(text, 0, 3, mustEqual);
 };
 
 const checkSenderIdTypePbWrAa = (text: string): boolean => {
@@ -68,7 +68,7 @@ const checkSenderIdTypeWR = (text: string): boolean => {
 
 const checkEDIStandardVersionNumber = (text: string): boolean => {
   const mustEqual = '01.10';
-  return ifTagMatchThenValid(text, 0, 3, mustEqual);
+  return ifTagMatchThenCheckValid(text, 0, 3, mustEqual);
 };
 
 const checkCreationDate = (text: string): boolean => {

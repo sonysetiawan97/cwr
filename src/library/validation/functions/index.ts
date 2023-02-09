@@ -1,4 +1,4 @@
-export const ifTagMatchThenValid = (
+export const ifTagMatchThenCheckValid = (
   text: string,
   startTag: number,
   endTag: number,

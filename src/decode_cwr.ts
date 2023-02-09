@@ -24,6 +24,7 @@ import { validationFileLevel } from './library/validation/file';
 import { validationMessageEnum } from './enum/validation_message';
 import { validationHDRLevel } from './library/validation/control_header/hdr';
 import { validationGRHLevel } from './library/validation/control_header/grh';
+import { validationGRTLevel } from './library/validation/control_header/grt';
 
 export const decoderFullPath = async (path: string): Promise<Cwr> => {
   return new Promise(async (resolve, reject) => {
@@ -69,25 +70,22 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
           if (getResultFromIndex) {
             const [resultData] = getResultFromIndex;
             if (tag === controlRecordEnum.HDR) {
-              hdr = resultData;
-              const isValidHdrLevel: boolean = await validationHDRLevel(hdr);
+              const isValidHdrLevel: boolean = await validationHDRLevel(resultData);
               if (!isValidHdrLevel) {
                 reject(validationMessageEnum.HDRLEVEL);
               }
             } else if (tag === controlRecordEnum.GRH) {
-              grh = resultData;
-              const isValidGrhLevel: boolean = await validationGRHLevel(grh);
+              const isValidGrhLevel: boolean = await validationGRHLevel(resultData, data);
               if (!isValidGrhLevel) {
                 reject(validationMessageEnum.GRHLEVEL);
               }
             } else if (tag === controlRecordEnum.GRT) {
               grt = resultData;
-              const isValidGrtLevel: boolean = true;
+              const isValidGrtLevel: boolean = await validationGRTLevel(resultData, data);
               if (!isValidGrtLevel) {
                 reject(validationMessageEnum.GRTLEVEL);
               }
             } else if (tag === controlRecordEnum.TRL) {
-              trl = resultData;
               const isValidTrlLevel: boolean = true;
               if (!isValidTrlLevel) {
                 reject(validationMessageEnum.TRLLEVEL);
