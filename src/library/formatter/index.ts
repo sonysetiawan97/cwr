@@ -6,19 +6,19 @@ import { formatStringType } from './text';
 import { formatTimeType } from './time';
 
 export const formatCheckType = (text: string | number | boolean, size: number, input_type: string) => {
-  if(input_type === inputTypeEnum.Numeric999v99) {
+  if (input_type === inputTypeEnum.Numeric999v99) {
     return formatNumber999v99Type(text.toString(), size);
   }
 
-  if (input_type == inputTypeEnum.Numeric) {
-    return formatNumberType(parseInt(text.toString()), size);
+  if (input_type === inputTypeEnum.Numeric) {
+    return formatNumberType(parseInt(text.toString(), 10), size);
   }
 
-  if (input_type == inputTypeEnum.Date) {
+  if (input_type === inputTypeEnum.Date) {
     return formatDateType(text.toString(), size);
   }
 
-  if (input_type == inputTypeEnum.Time) {
+  if (input_type === inputTypeEnum.Time) {
     return formatTimeType(text.toString(), size);
   }
 

@@ -33,10 +33,10 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
     const pathArray: string[] = path.split('/');
     const filename: string = pathArray[pathArray.length - 1];
 
-    let hdr: string = '';
-    let grh: string = '';
-    let grt: string = '';
-    let trl: string = '';
+    const hdr: string = '';
+    const grh: string = '';
+    const grt: string = '';
+    const trl: string = '';
 
     if (file && filename) {
       const file_naming: FileNamingV30 | FileNamingV21 | null = await decodeFileName(filename);
@@ -80,7 +80,6 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
                 reject(validationMessageEnum.GRHLEVEL);
               }
             } else if (tag === controlRecordEnum.GRT) {
-              grt = resultData;
               const isValidGrtLevel: boolean = await validationGRTLevel(resultData, data);
               if (!isValidGrtLevel) {
                 reject(validationMessageEnum.GRTLEVEL);

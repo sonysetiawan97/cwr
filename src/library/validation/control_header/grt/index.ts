@@ -3,10 +3,15 @@ import { validationMessageEnum } from '../../../../enum/validation_message';
 
 export const validationGRTLevel = async (text: string, data: string[]): Promise<boolean> => {
   return new Promise((resolve, reject) => {
-    if (!groupIdMustEqualToGroupIdGrh(data)) return reject(validationMessageEnum.GRTLEVEL);
+    if (!groupIdMustEqualToGroupIdGrh(data)) return reject(rejectedMessage());
+    if (!groupIDMustSequence(data)) return reject(rejectedMessage());
 
     return resolve(true);
   });
+};
+
+const rejectedMessage = (): string => {
+  return validationMessageEnum.GRTLEVEL;
 };
 
 const groupIdMustEqualToGroupIdGrh = (data: string[]): boolean => {
@@ -39,7 +44,7 @@ const groupIDMustSequence = (data: string[]): boolean => {
   });
 
   const sequence: number[] = groupIds.map((item) => {
-    return parseInt(item.slice(6, 11));
+    return parseInt(item.slice(6, 11), 10);
   });
 
   const { length } = sequence;

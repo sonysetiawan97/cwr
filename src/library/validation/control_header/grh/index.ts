@@ -25,7 +25,7 @@ const groupIDMustSequence = (data: string[]): boolean => {
   });
 
   const sequence: number[] = groupIds.map((item) => {
-    return parseInt(item.slice(6, 11));
+    return parseInt(item.slice(6, 11), 10);
   });
 
   const { length } = sequence;

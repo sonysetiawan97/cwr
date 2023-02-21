@@ -35,13 +35,6 @@ import { isw } from './headers/isw';
 import { nwr } from './headers/nwr';
 import { rev } from './headers/rev';
 
-const breakText = [
-  TransactionHeaderEnumV21.AGR,
-  TransactionHeaderEnumV21.NWR,
-  TransactionHeaderEnumV21.REV,
-  TransactionHeaderEnumV21.EXC,
-];
-
 export const decodeTransactionsV21 = async (data: string[][]): Promise<Transactions[][]> => {
   const result: Transactions[][] = [];
 
@@ -61,7 +54,7 @@ export const decodeTransaction = async (data: string[]): Promise<Transactions[]>
   if (first) {
     const tag = first.slice(0, 3);
 
-    if (tag == TransactionHeaderEnumV21.ACK) {
+    if (tag === TransactionHeaderEnumV21.ACK) {
       const children: Transactions[] = await generateACK(leftData);
       const detail: DetailTransaction = await ack(first, tag);
 

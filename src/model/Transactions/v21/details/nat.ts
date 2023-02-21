@@ -6,8 +6,8 @@ export interface NATV21 {
 }
 
 export const formNatV21: NATV21 = {
-  record_prefix: "",
-  title: "",
-  title_type: "",
-  language_code: ""
+  record_prefix: '',
+  title: '',
+  title_type: '',
+  language_code: '',
 };

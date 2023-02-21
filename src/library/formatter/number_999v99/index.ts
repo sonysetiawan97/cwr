@@ -4,9 +4,9 @@ export const formatNumber999v99Type = (
   integerNumberSize: number = 3,
   decimalNumberSize: number = 2,
 ): string => {
-  let [integerNumber, decimalNumber] = number.split('.');
-  let integerNumberText = formatNumberDecimal(integerNumber, integerNumberSize);
-  let decimalNumberText = formatNumberDecimal(decimalNumber, decimalNumberSize);
+  const [integerNumber, decimalNumber] = number.split('.');
+  const integerNumberText = formatNumberDecimal(integerNumber, integerNumberSize);
+  const decimalNumberText = formatNumberDecimal(decimalNumber, decimalNumberSize);
 
   const result = `${integerNumberText}${decimalNumberText}`;
 

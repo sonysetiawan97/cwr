@@ -8,10 +8,10 @@ export interface NPNV300 {
 }
 
 export const formNpnV300: NPNV300 = {
-  record_prefix: "",
-  publisher_sequence_number: "",
-  interested_party_number: "",
-  publisher_name: "",
-  language_code: "",
-  script_code: ""
+  record_prefix: '',
+  publisher_sequence_number: '',
+  interested_party_number: '',
+  publisher_name: '',
+  language_code: '',
+  script_code: '',
 };

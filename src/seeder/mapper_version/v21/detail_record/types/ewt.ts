@@ -113,7 +113,7 @@ export const EWT: MapperSeeder[] = [
     description: 'Writer 1 IPI Base Number',
     is_required: false,
   },
-  
+
   {
     version: versionAvailable.v21,
     group_name,
@@ -132,7 +132,7 @@ export const EWT: MapperSeeder[] = [
     input_type: inputTypeEnum.Alpha,
     tag: 'free_text',
     start_char: 297,
-    size:   30,
+    size: 30,
     end_char: 327,
     field: 'writer_2_first_name',
     description: 'Writer 2 First Name',

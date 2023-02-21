@@ -2,7 +2,7 @@ export const ifTagMatchThenCheckValid = (
   text: string,
   startTag: number,
   endTag: number,
-  textSameAs: string | Array<string>,
+  textSameAs: string | string[],
 ): boolean => {
   const tag = text.slice(startTag, endTag);
 
@@ -17,7 +17,7 @@ export const ifTagMatchThenNeedRequiredAnotherTag = (
   text: string,
   startTag: number,
   endTag: number,
-  textSameAs: string | Array<string>,
+  textSameAs: string | string[],
   startTagRequired: number,
   endTagRequired: number,
 ): boolean => {

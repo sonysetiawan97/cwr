@@ -204,7 +204,7 @@ export const AGR: MapperSeeder[] = [
     size: 14,
     end_char: 122,
     input_type: inputTypeEnum.Alpha,
-    is_required: false  ,
+    is_required: false,
     tag: 'free_text',
     version: versionAvailable.v21,
     group_name,
