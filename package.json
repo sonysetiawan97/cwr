@@ -1,8 +1,8 @@
 {
   "name": "cwr-lib-sony",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Library for encode & decode CWR",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "jest --config --passWithNoTests jestconfig.json",
     "build": "tsc",
