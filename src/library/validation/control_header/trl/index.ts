@@ -24,7 +24,7 @@ const groupIdMustEqualToGroupTotal = (data: string[]): boolean => {
   const { length } = groupIds;
 
   const trl = data[data.length - 1];
-  const groupCount = parseInt(trl.slice(3, 8));
+  const groupCount = parseInt(trl.slice(3, 8), 10);
 
   return groupCount === length;
 };
@@ -48,7 +48,7 @@ const groupIDMustSequence = (data: string[]): boolean => {
 const recordCountMustEqualWithNumberPhysicInclusiveHdrTrl = (data: string[]): boolean => {
   const { length } = data;
   const trl = data[length - 1];
-  const recordCount = parseInt(trl.slice(16, 24));
+  const recordCount = parseInt(trl.slice(16, 24), 10);
 
   return length === recordCount;
 };

@@ -65,7 +65,7 @@ const recordCountMustEqualWithNumberPhysicInclusiveGrhGrt = (data: string[]): bo
   const indexFirst = data.map((item) => item.slice(0, 3)).indexOf(controlRecordEnum.GRH);
   const lastIndex = data.map((item) => item.slice(0, 3)).indexOf(controlRecordEnum.GRT);
   const grt = data[lastIndex];
-  const recordCount = parseInt(grt.slice(16, 24));
+  const recordCount = parseInt(grt.slice(16, 24), 10);
   const datas = data.slice(indexFirst, lastIndex + 1);
   const { length } = datas;
 
