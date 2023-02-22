@@ -28,7 +28,7 @@ const tagMustBeHDR = (text: string): boolean => {
 
 const checkSenderType = (text: string): boolean => {
   const mustEqual = ['PB', 'SO', 'WR', 'AA'];
-  return ifTagMatchThenCheckValid(text, 0, 3, mustEqual);
+  return ifTagMatchThenCheckValid(text, 3, 5, mustEqual);
 };
 
 const checkSenderIdTypePbWrAa = (text: string): boolean => {
@@ -68,7 +68,7 @@ const checkSenderIdTypeWR = (text: string): boolean => {
 
 const checkEDIStandardVersionNumber = (text: string): boolean => {
   const mustEqual = '01.10';
-  return ifTagMatchThenCheckValid(text, 0, 3, mustEqual);
+  return ifTagMatchThenCheckValid(text, 59, 64, mustEqual);
 };
 
 const checkCreationDate = (text: string): boolean => {

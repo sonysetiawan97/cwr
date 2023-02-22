@@ -1,5 +1,6 @@
 import { TransactionHeaderEnumV21, TransactionEnumV21 } from '../../../../enum/transaction';
 import { DetailTransaction, Transactions } from '../../../../model/transaction';
+import { validationAckLevel } from '../../../validation/transactions/header';
 import { alt } from './details/alt';
 import { ari } from './details/ari';
 import { com } from './details/com';
@@ -49,28 +50,31 @@ export const decodeTransactionsV21 = async (data: string[][]): Promise<Transacti
 };
 
 export const decodeTransaction = async (data: string[]): Promise<Transactions[]> => {
-  const [first, ...leftData] = data;
+  return new Promise(async (resolve, reject) => {
+    const [first, ...leftData] = data;
 
-  if (first) {
-    const tag = first.slice(0, 3);
+    if (first) {
+      const tag = first.slice(0, 3);
 
-    if (tag === TransactionHeaderEnumV21.ACK) {
-      const children: Transactions[] = await generateACK(leftData);
-      const detail: DetailTransaction = await ack(first, tag);
+      if (tag === TransactionHeaderEnumV21.ACK) {
+        const children: Transactions[] = await generateACK(leftData);
+        const detail: DetailTransaction = await ack(first, tag);
+        const validation: boolean = await validationAckLevel(data, []);
 
-      const result: Transactions = {
-        parent: {
-          tag,
-          detail,
-        },
-        children: [...children],
-      };
+        const result: Transactions = {
+          parent: {
+            tag,
+            detail,
+          },
+          children: [...children],
+        };
 
-      return [result];
+        return resolve([result]);
+      }
     }
-  }
 
-  return [];
+    return resolve([]);
+  });
 };
 
 const generateACK = async (data: string[]): Promise<Transactions[]> => {
@@ -143,11 +147,6 @@ const generateChildren = async (data: string[]): Promise<Transactions[]> => {
       return result;
     }),
   );
-};
-
-const getIndexTagFromText = (data: string[], tag: TransactionEnumV21): number => {
-  const findIndexData = data.findIndex((d) => d.slice(0, 3) === tag);
-  return findIndexData;
 };
 
 const getTagArrayAckFromText = (data: string[]): number => {

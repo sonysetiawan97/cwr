@@ -1,3 +1,5 @@
+import { everyTagTransactions } from './get';
+
 export const ifTagMatchThenCheckValid = (
   text: string,
   startTag: number,
@@ -44,4 +46,30 @@ export const ifTagDateMustValid = (text: string, startTag: number, endTag: numbe
   const date: Date = new Date(stringDate);
 
   return date instanceof Date && date !== null && date !== undefined;
+};
+
+export const ifTagProvideThenAnotherTagRequired = (
+  text: string,
+  startTag: number,
+  endTag: number,
+  startAnotherTag: number,
+  endAnotherTag: number,
+): boolean => {
+  const tagProvide = text.slice(startTag, endTag);
+  if (tagProvide) {
+    const anotherTagProvide = text.slice(startAnotherTag, endAnotherTag);
+    if (anotherTagProvide) {
+      return true;
+    }
+    return false;
+  }
+
+  return true;
+};
+
+export const ifOnlyOnePerTransaction = (data: string[], match: string): boolean => {
+  const tags: string[] = everyTagTransactions(data);
+  const isMultiple = tags.filter((item) => item === match);
+  const { length } = isMultiple;
+  return length === 1;
 };
