@@ -1,7 +1,7 @@
-import { decoderFullPath } from './src/decode_cwr';
-import { encodeCwr } from './src/encode_cwr';
-import { CwrEncode, Cwr } from './src/model/cwr';
-import { CWREncode, CWREncodeResult } from './src/model/encode/v21';
+import { decoderFullPath } from './lib/decode_cwr';
+import { encodeCwr } from './lib/encode_cwr';
+import { CwrEncode, Cwr } from './lib/model/cwr';
+import { CWREncode, CWREncodeResult } from './lib/model/encode/v21';
 
 export const DecodeCwr = async (fullpath: string) => {
   try {
