@@ -13,3 +13,7 @@ export enum ValidationFileLevelStepMessageEnum {
   LASTLINEMUSTTRL = 'Last Line Must TRL',
   GRHFOLLOWEDBYTRANSACTIONHEADER = 'GRH Followed By Transaction Header',
 }
+
+export enum ValidationTransactionLevelEnum {
+  ACK = 'Not Pass on ACK Validation.',
+}

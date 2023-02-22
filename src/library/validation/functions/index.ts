@@ -1,3 +1,5 @@
+import { everyTagTransactions } from './get';
+
 export const ifTagMatchThenCheckValid = (
   text: string,
   startTag: number,
@@ -63,4 +65,11 @@ export const ifTagProvideThenAnotherTagRequired = (
   }
 
   return true;
+};
+
+export const ifOnlyOnePerTransaction = (data: string[], match: string): boolean => {
+  const tags: string[] = everyTagTransactions(data);
+  const isMultiple = tags.filter((item) => item === match);
+  const { length } = isMultiple;
+  return length === 1;
 };
