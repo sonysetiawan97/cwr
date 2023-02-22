@@ -45,3 +45,22 @@ export const ifTagDateMustValid = (text: string, startTag: number, endTag: numbe
 
   return date instanceof Date && date !== null && date !== undefined;
 };
+
+export const ifTagProvideThenAnotherTagRequired = (
+  text: string,
+  startTag: number,
+  endTag: number,
+  startAnotherTag: number,
+  endAnotherTag: number,
+): boolean => {
+  const tagProvide = text.slice(startTag, endTag);
+  if (tagProvide) {
+    const anotherTagProvide = text.slice(startAnotherTag, endAnotherTag);
+    if (anotherTagProvide) {
+      return true;
+    }
+    return false;
+  }
+
+  return true;
+};

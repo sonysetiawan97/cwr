@@ -21,7 +21,7 @@ const transactionTypeRequiredAndMatchWithTransactionTypeTable = (text: string): 
 
 const groupIDMustSequence = (data: string[]): boolean => {
   const groupIds: string[] = data.filter((item) => {
-    return item.slice(0, 3) !== controlRecordEnum.GRH;
+    return item.slice(0, 3) === controlRecordEnum.GRH;
   });
 
   const sequence: number[] = groupIds.map((item) => {
@@ -36,7 +36,24 @@ const groupIDMustSequence = (data: string[]): boolean => {
 };
 
 const grhMustFollowByGrtOrHdr = (data: string[]): boolean => {
-  return true;
+  let followed: boolean = true;
+
+  data.map((item, index) => {
+    const tag = item.slice(0, 3);
+    if (tag === controlRecordEnum.GRH && followed) {
+      const followdata = data[index - 1];
+      if (followdata) {
+        const isGrtOrHdr: boolean =
+          followdata.slice(0, 3) === controlRecordEnum.GRH || followdata.slice(0, 3) === controlRecordEnum.HDR;
+        followed = isGrtOrHdr;
+        return;
+      }
+      followed = false;
+      return;
+    }
+  });
+
+  return followed;
 };
 
 const cwrVersionMustVer2 = (text: string, mustExact: string = '02.10'): boolean => {
