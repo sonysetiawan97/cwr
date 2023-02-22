@@ -1,10 +1,10 @@
 {
-  "name": "cwr-lib",
+  "name": "cwr-lib-sony",
   "version": "1.0.0",
   "description": "Library for encode & decode CWR",
   "main": "index.js",
   "scripts": {
-    "test": "jest --config jestconfig.json",
+    "test": "jest --config --passWithNoTests jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
@@ -25,7 +25,7 @@
     "url": "git@github.com:sonysetiawan97/cwr.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "sonysetiawan97",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/sonysetiawan97/cwr/issues"
