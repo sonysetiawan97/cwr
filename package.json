@@ -22,15 +22,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:sonysetiawan97/cwr.git"
+    "url": "git+ssh://git@gitlab.com/portamento/cwr-lib.git"
   },
   "keywords": [],
   "author": "sonysetiawan97",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sonysetiawan97/cwr/issues"
+    "url": "https://gitlab.com/portamento/cwr-lib/issues"
   },
-  "homepage": "https://github.com/sonysetiawan97/cwr",
+  "homepage": "https://gitlab.com/portamento/cwr-lib#readme",
   "devDependencies": {
     "@types/jest": "^29.2.5",
     "@types/node": "^18.11.19",
