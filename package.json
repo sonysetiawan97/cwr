@@ -1,6 +1,6 @@
 {
   "name": "cwr-lib-sony",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Library for encode & decode CWR",
   "main": "lib/index",
   "typings": "lib/index",
