@@ -4,7 +4,7 @@ import { tag_header } from '../table/tag_header';
 import * as sqlite3 from 'sqlite3';
 import path = require('path');
 
-const dbFile = path.resolve('./tmp/database/cwr.db');
+const dbFile = path.resolve(__dirname, '..', '..', 'tmp', 'database', 'cwr.db');
 
 const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err: any) => {
   if (err) throw err;
