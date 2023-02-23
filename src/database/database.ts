@@ -2,8 +2,11 @@ import { mapper } from '../table/mapper';
 import { filename } from '../table/filename';
 import { tag_header } from '../table/tag_header';
 import * as sqlite3 from 'sqlite3';
+import path = require('path');
 
-const dbFile = __dirname + '/cwr.db';
+const dbFile = path.resolve('./tmp/database/cwr.db');
+
+console.log(dbFile);
 
 const db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err: any) => {
   if (err) throw err;

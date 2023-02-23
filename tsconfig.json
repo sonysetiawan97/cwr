@@ -6,6 +6,6 @@
     "outDir": "./lib",
     "strict": true,
   },
-  "include": ["src"],
+  "include": ["src", "src/database/cwr.db"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }
