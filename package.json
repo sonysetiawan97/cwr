@@ -1,6 +1,6 @@
 {
   "name": "cwr-lib-sony",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Library for encode & decode CWR",
   "main": "lib/index",
   "typings": "lib/index",
@@ -19,7 +19,8 @@
     "run:test": "npx ts-node ./src/test_decoder.ts"
   },
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "tmp/*"
   ],
   "repository": {
     "type": "git",
