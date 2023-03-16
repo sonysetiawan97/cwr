@@ -15,7 +15,7 @@ export const validationGRHLevel = async (text: string, data: string[]): Promise<
 };
 
 const transactionTypeRequiredAndMatchWithTransactionTypeTable = (text: string): boolean => {
-  const exact = ['ACK', 'WRK', 'ISR', 'EXC', 'ISA', 'LIC', 'DRW'];
+  const exact = ['ACK', 'AGR', 'NWR', 'REV', 'ISW', 'EXC', 'COP'];
   return ifTagMatchThenCheckValid(text, 3, 6, exact);
 };
 

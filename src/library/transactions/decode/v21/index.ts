@@ -70,6 +70,19 @@ export const decodeTransaction = async (data: string[]): Promise<Transactions[]>
         };
 
         return resolve([result]);
+      } else if (tag === TransactionHeaderEnumV21.NWR) {
+        const children: Transactions[] = await generateACK(data);
+        const [_, ...leftDataChildren] = children;
+        const detail: DetailTransaction = await nwr(first, tag);
+        const result: Transactions = {
+          parent: {
+            tag,
+            detail,
+          },
+          children: [...leftDataChildren],
+        };
+
+        return resolve([result]);
       }
     }
 

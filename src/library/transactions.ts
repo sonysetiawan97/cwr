@@ -18,6 +18,20 @@ export const decodeTransactionsDetail = async (data: string[], version: string):
     });
   });
 
+  if (listTransactionIndex.length === 0) {
+    const headerTransactionNwrRev: string[] = ['NWR', 'REV'];
+    headerTransactionNwrRev.map((item) => {
+      const regex = new RegExp(item);
+      data.map((value, index) => {
+        const text = value.slice(0, 3);
+        const transaction = regex.test(text);
+        if (transaction) {
+          listTransactionIndex.push(index);
+        }
+      });
+    });
+  }
+
   listTransactionIndex.map((_, index) => {
     const [start, end] = listTransactionIndex.slice(index, index + 2);
     const transactionData: string[] = data.slice(start, end);

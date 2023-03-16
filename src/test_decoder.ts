@@ -1,12 +1,11 @@
 import { DecodeCwr, EncodeCwr } from './index';
 import { Cwr } from './model/cwr';
-import { EncodeFileNamingV21 } from './model/filename';
 import { cwr } from './__files__/cwr';
 import * as path from 'path';
 import * as fs from 'fs';
 import { CWREncode, CWREncodeResult } from './model/encode/v21';
 
-const fileName = 'CW200046026_MME.V21';
+const fileName = 'CW230008MME_000.V21';
 const bucket = '/__files__/';
 const fullpath = __dirname + `${bucket}${fileName}`;
 
