@@ -18,3 +18,17 @@ export const encodeTRLVer21 = async (data: TRLEncode): Promise<string> => {
     })
     .join('');
 };
+
+export const encodeTRLVerBasedOnGRH = async (
+  group_count: number = 0,
+  record_count: number = 0,
+  transaction_count: number = 0,
+): Promise<string> => {
+  const formatData: TRLEncode = {
+    record_type: controlRecordEnum.TRL,
+    group_count,
+    record_count,
+    transaction_count,
+  };
+  return encodeTRLVer21(formatData);
+};

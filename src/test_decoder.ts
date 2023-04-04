@@ -1,9 +1,10 @@
-import { DecodeCwr, EncodeCwr } from './index';
+import { DecodeCwr, EncodeCwr, EncodeCwrMultipleGroup } from './index';
 import { Cwr } from './model/cwr';
 import { cwr } from './__files__/cwr';
+import { cwrMultipleGroup } from './__files__/cwr_multiple_group';
 import * as path from 'path';
 import * as fs from 'fs';
-import { CWREncode, CWREncodeResult } from './model/encode/v21';
+import { CWREncode, CWREncodeResult, CwrEncodeMultipleGroup } from './model/encode/v21';
 
 const fileName = 'CW230008MME_000.V21';
 const bucket = '/__files__/';
@@ -39,5 +40,20 @@ const encode = async (data: CWREncode): Promise<CWREncodeResult> => {
   }
 };
 
-decode(fullpath);
-encode(cwr);
+const encodeMultipleGroup = async (data: CwrEncodeMultipleGroup): Promise<CWREncodeResult> => {
+  try {
+    const result: CWREncodeResult = await EncodeCwrMultipleGroup(data);
+
+    const filePath = path.join(__dirname, `/${basePathResult}/encode/${result.filename}`);
+
+    fs.writeFileSync(filePath, result.data);
+
+    return result;
+  } catch (e) {
+    throw e;
+  }
+};
+
+// decode(fullpath);
+// encode(cwr);
+encodeMultipleGroup(cwrMultipleGroup);

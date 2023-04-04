@@ -1,3 +1,5 @@
+import { CwrEncodeTransactions } from '..';
+
 export interface CwrEncodeControlHeader {
   hdr: HDREncode;
   grh: GRHEncode;
@@ -35,7 +37,12 @@ export interface GRTEncode {
 
 export interface TRLEncode {
   record_type: string;
-  group_id: number;
+  group_count: number;
   transaction_count: number;
   record_count: number;
+}
+
+export interface TRLEncodeWithTransaction {
+  detail: GRHEncode;
+  transaction: CwrEncodeTransactions[][];
 }

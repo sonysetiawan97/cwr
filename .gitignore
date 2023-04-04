@@ -2,3 +2,4 @@ node_modules
 /lib
 src/__files__
 src/__result__
+/tmp/database/*.db.unused

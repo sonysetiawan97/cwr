@@ -1,6 +1,6 @@
 import { controlRecordEnum } from '../../../../../enum/control_record';
 import { versionAvailable } from '../../../../../enum/version';
-import { GRTEncode } from '../../../../../model/encode/v21/control_header';
+import { GRHEncode, GRTEncode } from '../../../../../model/encode/v21/control_header';
 import { Mapper } from '../../../../../model/mapper';
 import { getDataMapper } from '../../../../fetch/get';
 import { formatCheckType } from '../../../../formatter';
@@ -17,4 +17,18 @@ export const encodeGRTVer21 = async (data: GRTEncode): Promise<string> => {
       return formatCheckType(text, size, input_type);
     })
     .join('');
+};
+
+export const encodeGRTVerBasedOnGRH = async (
+  data: GRHEncode,
+  record_count: number = 0,
+  transaction_count: number = 0,
+): Promise<string> => {
+  const formatData: GRTEncode = {
+    group_id: data.type_group_id,
+    record_type: controlRecordEnum.GRT,
+    record_count,
+    transaction_count,
+  };
+  return encodeGRTVer21(formatData);
 };

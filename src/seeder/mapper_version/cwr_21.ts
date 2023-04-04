@@ -262,8 +262,8 @@ const TRL: MapperSeeder[] = [
     start_char: 4,
     end_char: 9,
     size: 5,
-    field: 'group_id',
-    description: 'Group ID',
+    field: 'group_count',
+    description: 'Group Count',
   },
   {
     version: versionAvailable.v21,
