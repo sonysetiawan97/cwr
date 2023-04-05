@@ -20,38 +20,48 @@ export const encodeCwrMultipleGroup = async (data: CwrEncodeMultipleGroup): Prom
       if (version === versionAvailable.v21) {
         const { transactions } = data;
         const filenameResult: string = encodeFileName(filename);
-        let groupCount = 0;
-        let transactionCountLine = 0;
+        let groupCount: number = 0;
+        let transcationCount: number = 0;
+        let transactionCountLine: number = 0;
 
         const { hdr, group } = transactions;
 
         const hdrResult: string = await encodeHDRVer21(hdr);
         const groupResult: Promise<string[]> = Promise.all(
           group.map(async (entry) => {
+            let groupTransactionCountLine: number = 0;
+
             const resultGroup: string[] = [];
             const { detail, transaction } = entry;
             const grhResult: string = await encodeGRHVer21(detail);
             resultGroup.push(grhResult);
-            transactionCountLine++;
+            groupTransactionCountLine++;
 
             const transactionsResult: string[] = await encodeTransactionsVer21(transaction);
             transactionsResult.map((res) => {
               resultGroup.push(res);
-              transactionCountLine++;
+              groupTransactionCountLine += res.split(joinEnum.LineBreak).length;
             });
 
-            groupCount = resultGroup.length;
-            transactionCountLine = transactionsResult.length;
-
-            const grtResult: string = await encodeGRTVerBasedOnGRH(detail, groupCount, transactionCountLine + 1);
+            groupTransactionCountLine++;
+            const grtResult: string = await encodeGRTVerBasedOnGRH(
+              detail,
+              transaction.length,
+              groupTransactionCountLine,
+            );
             resultGroup.push(grtResult);
+
+            transcationCount += transaction.length;
+            groupCount++;
+            transactionCountLine += groupTransactionCountLine;
+
             return resultGroup.join(joinEnum.LineBreak);
           }),
         );
 
         const finalResult: string[] = [hdrResult, ...(await groupResult)];
 
-        const trlResult: string = await encodeTRLVerBasedOnGRH(groupCount, groupCount, finalResult.length + 1);
+        const trlResult: string = await encodeTRLVerBasedOnGRH(groupCount, transcationCount, transactionCountLine + 2);
 
         finalResult.push(trlResult);
 
