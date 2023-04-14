@@ -6,7 +6,7 @@ export interface OPUV21 {
   publisher_unknown_indicator: string;
   publisher_type: string;
   tax_id: string;
-  publisher_ip_name: string;
+  publisher_ipi_name: string;
   submitter_agreement_number: string;
   pr_affiliation_society: string;
   pr_ownership_share: string;
@@ -32,7 +32,7 @@ export const formOpuV21: OPUV21 = {
   publisher_unknown_indicator: '',
   publisher_type: '',
   tax_id: '',
-  publisher_ip_name: '',
+  publisher_ipi_name: '',
   submitter_agreement_number: '',
   pr_affiliation_society: '',
   pr_ownership_share: '',

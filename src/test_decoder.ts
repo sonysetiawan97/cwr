@@ -54,6 +54,9 @@ const encodeMultipleGroup = async (data: CwrEncodeMultipleGroup): Promise<CWREnc
   }
 };
 
+const filePath = path.join(__dirname, `/${basePathResult}/encode/cwr_multiple_group.json`);
+fs.writeFileSync(filePath, JSON.stringify(cwrMultipleGroup));
+
 // decode(fullpath);
 // encode(cwr);
 encodeMultipleGroup(cwrMultipleGroup);

@@ -6,6 +6,10 @@ import { formatStringType } from './text';
 import { formatTimeType } from './time';
 
 export const formatCheckType = (text: string | number | boolean, size: number, input_type: string) => {
+  if (text === null || text === undefined || text === '') {
+    return '';
+  }
+
   if (input_type === inputTypeEnum.Numeric999v99) {
     return formatNumber999v99Type(text.toString(), size);
   }

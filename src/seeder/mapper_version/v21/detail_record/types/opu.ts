@@ -97,7 +97,7 @@ export const OPU: MapperSeeder[] = [
     start_char: 88,
     size: 11,
     end_char: 99,
-    field: 'publisher_ip_name',
+    field: 'publisher_ipi_name',
     description: 'Publisher IPI Name #',
     is_required: false,
   },
