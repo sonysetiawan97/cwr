@@ -25,7 +25,7 @@ export const orn = async (text: string, group_name: string): Promise<ORNV300> =>
     const name: string = field;
     const start: number = start_char - 1;
     const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
+    const value: string = text.slice(start, end).trim();
     result = {
       ...result,
       [name]: value,
