@@ -213,12 +213,12 @@ export const decodeFullPathMultipleGroup = async (path: string): Promise<CWRDeco
 
           const transaction: Transactions[][] = await decodeTransactionsDetailMultipleGroupVer21(transactionData, detail); 
 
-          const result: GRHDecodeWithTransaction = {
+          const resultTransaction: GRHDecodeWithTransaction = {
             detail,
             transaction,
             close_detail,
           };
-          group.push(result);
+          group.push(resultTransaction);
         }),
       );
 

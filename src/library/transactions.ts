@@ -72,7 +72,7 @@ export const decodeTransactionsDetailMultipleGroupVer21 = async (
 
   return await Promise.all(
     listTransactionString.map(async (items) => {
-      const [tag, ...childrenTag] = items;
+      const [tag, ...childrens] = items;
 
       const parentTag: string = tag.slice(0, 3);
       const parent: ParentTransactions = {
@@ -80,15 +80,15 @@ export const decodeTransactionsDetailMultipleGroupVer21 = async (
         detail: await decodeDetails(tag, parentTag as TransactionEnumV21),
       };
       const children: Transactions[] = await Promise.all(
-        childrenTag.map(async (d): Promise<Transactions> => {
+        childrens.map(async (d): Promise<Transactions> => {
           const childrenTag: string = d.slice(0, 3);
-          const parent: ParentTransactions = {
+          const childrenDetail: ParentTransactions = {
             tag: childrenTag,
             detail: await decodeDetails(d, childrenTag as TransactionEnumV21),
           };
 
           return {
-            parent,
+            parent: childrenDetail,
           };
         }),
       );
