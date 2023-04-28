@@ -211,7 +211,10 @@ export const decodeFullPathMultipleGroup = async (path: string): Promise<CWRDeco
           const [grtTag]: string[] = transactionData.splice(grtIndexText, 1);
           const close_detail: GRTVer21 = await decodeGrtVer21(grtTag);
 
-          const transaction: Transactions[][] = await decodeTransactionsDetailMultipleGroupVer21(transactionData, detail); 
+          const transaction: Transactions[][] = await decodeTransactionsDetailMultipleGroupVer21(
+            transactionData,
+            detail,
+          );
 
           const resultTransaction: GRHDecodeWithTransaction = {
             detail,
