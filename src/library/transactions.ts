@@ -72,12 +72,12 @@ export const decodeTransactionsDetailMultipleGroupVer21 = async (
 
   return await Promise.all(
     listTransactionString.map(async (items) => {
-      const [tag, ...childrens] = items;
+      const [parentData, ...childrens] = items;
 
-      const parentTag: string = tag.slice(0, 3);
+      const parentTag: string = parentData.slice(0, 3);
       const parent: ParentTransactions = {
         tag: parentTag,
-        detail: await decodeDetails(tag, parentTag as TransactionEnumV21),
+        detail: await decodeDetails(parentData, parentTag as TransactionEnumV21),
       };
       const children: Transactions[] = await Promise.all(
         childrens.map(async (d): Promise<Transactions> => {
