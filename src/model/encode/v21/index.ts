@@ -1,4 +1,4 @@
-import { CwrEncodeControlHeader, HDREncode, TRLEncodeWithTransaction } from './control_header';
+import { CwrEncodeControlHeader, HDREncode, GRHEncodeWithTransaction } from './control_header';
 import { CwrEncodeFilename } from './filename';
 
 export interface CWREncode {
@@ -33,7 +33,7 @@ export interface CwrEncodeTransactions {
 
 export interface CwrEncodeControlHeaderMultipleGroup {
   hdr: HDREncode;
-  group: TRLEncodeWithTransaction[];
+  group: GRHEncodeWithTransaction[];
 }
 export interface CwrEncodeMultipleGroup {
   filename: CwrEncodeFilename;

@@ -8,39 +8,53 @@ import {
   FormFileNamingV30,
 } from '../model/filename';
 import { Params, Where } from '../model/model';
-import { versionAvailable } from '../enum/version';
+import { versionAvailable, VersionAvailableFilenameEnum } from '../enum/version';
 import { CwrEncodeFilename } from '../model/encode/v21/filename';
 
 export const decodeFileName = async (filename: string): Promise<FileNamingV21 | FileNamingV30 | null> => {
-  const availableVersion: string[] = ['.V21', '_V3-0-0.'];
+  const availableVersion: string[] = [VersionAvailableFilenameEnum.v21, VersionAvailableFilenameEnum.v300];
   const [version] = availableVersion.filter((item) => {
     const regex = new RegExp(item);
     return regex.test(filename);
   });
 
-  if (version === '.V21') {
+  if (version === VersionAvailableFilenameEnum.v21) {
     return await fileNameVer21(filename);
   }
 
-  if (version === '_V3-0-0.') {
+  if (version === VersionAvailableFilenameEnum.v300) {
     return await fileNameVer30(filename);
   }
 
   return null;
 };
 
-export const checkVersion = (filename: string): versionAvailable | null => {
-  const availableVersion: string[] = ['.V21', '_V3-0-0.'];
+export const decodeFileNameV21 = async (filename: string): Promise<FileNamingV21 | null> => {
+  const availableVersion: string[] = [VersionAvailableFilenameEnum.v21];
   const [version] = availableVersion.filter((item) => {
     const regex = new RegExp(item);
     return regex.test(filename);
   });
 
-  if (version === '.V21') {
+  if (version === VersionAvailableFilenameEnum.v21) {
+    return await fileNameVer21(filename);
+  }
+
+  return null;
+};
+
+export const checkVersion = (filename: string): versionAvailable | null => {
+  const availableVersion: string[] = [VersionAvailableFilenameEnum.v21, VersionAvailableFilenameEnum.v300];
+  const [version] = availableVersion.filter((item) => {
+    const regex = new RegExp(item);
+    return regex.test(filename);
+  });
+
+  if (version === VersionAvailableFilenameEnum.v21) {
     return versionAvailable.v21;
   }
 
-  if (version === '_V3-0-0.') {
+  if (version === VersionAvailableFilenameEnum.v300) {
     return versionAvailable.v300;
   }
 

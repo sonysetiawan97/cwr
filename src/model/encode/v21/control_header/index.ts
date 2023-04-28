@@ -42,7 +42,7 @@ export interface TRLEncode {
   record_count: number;
 }
 
-export interface TRLEncodeWithTransaction {
+export interface GRHEncodeWithTransaction {
   detail: GRHEncode;
   transaction: CwrEncodeTransactions[][];
 }

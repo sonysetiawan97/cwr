@@ -83,6 +83,19 @@ export const decodeTransaction = async (data: string[]): Promise<Transactions[]>
         };
 
         return resolve([result]);
+      } else if (tag === TransactionHeaderEnumV21.REV) {
+        const children: Transactions[] = await generateACK(data);
+        const [_, ...leftDataChildren] = children;
+        const detail: DetailTransaction = await rev(first, tag);
+        const result: Transactions = {
+          parent: {
+            tag,
+            detail,
+          },
+          children: [...leftDataChildren],
+        };
+
+        return resolve([result]);
       }
     }
 
@@ -176,7 +189,19 @@ const getTagArrayAckFromText = (data: string[]): number => {
 };
 
 export const decodeDetails = async (text: string, tag: TransactionEnumV21): Promise<DetailTransaction> => {
-  if (tag === TransactionEnumV21.ALT) {
+  if (tag === TransactionEnumV21.ACK) {
+    return await ack(text, tag);
+  } else if (tag === TransactionEnumV21.AGR) {
+    return await agr(text, tag);
+  } else if (tag === TransactionEnumV21.NWR) {
+    return await nwr(text, tag);
+  } else if (tag === TransactionEnumV21.EXC) {
+    return await exc(text, tag);
+  } else if (tag === TransactionEnumV21.ISW) {
+    return await isw(text, tag);
+  } else if (tag === TransactionEnumV21.REV) {
+    return await rev(text, tag);
+  } else if (tag === TransactionEnumV21.ALT) {
     return await alt(text, tag);
   } else if (tag === TransactionEnumV21.ARI) {
     return await ari(text, tag);

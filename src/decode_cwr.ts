@@ -1,8 +1,17 @@
 import { Cwr, cwrForm } from './model/cwr';
 import { FileNamingV21, FileNamingV30 } from './model/filename';
 import * as fs from 'fs';
-import { checkVersion, decodeFileName } from './library/filename';
-import { decodeGrh, decodeGrt, decodeHdr, decodeTrl } from './library/control_record/decode';
+import { checkVersion, decodeFileName, decodeFileNameV21 } from './library/filename';
+import {
+  decodeGrh,
+  decodeGrhVer21,
+  decodeGrt,
+  decodeGrtVer21,
+  decodeHdr,
+  decodeHdrVer21,
+  decodeTrl,
+  decodeTrlVer21,
+} from './library/control_record/decode';
 import { versionAvailable } from './enum/version';
 import {
   TagHeaderTable,
@@ -15,7 +24,7 @@ import {
   TRLVer21,
   TRLVer300,
 } from './model/control_record';
-import { decodeTransactionsDetail } from './library/transactions';
+import { decodeTransactionsDetail, decodeTransactionsDetailMultipleGroupVer21 } from './library/transactions';
 import { Transactions } from './model/transaction';
 import { getDataHeader } from './library/fetch/get';
 import { controlRecordEnum } from './enum/control_record';
@@ -26,6 +35,8 @@ import { validationHDRLevel } from './library/validation/control_header/hdr';
 import { validationGRHLevel } from './library/validation/control_header/grh';
 import { validationGRTLevel } from './library/validation/control_header/grt';
 import { validationTRLLevel } from './library/validation/control_header/trl';
+import { CWRDecodeResultModel, initialValueCWRDecodeResult } from './model/decode/v21';
+import { GRHDecodeWithTransaction } from './model/decode/v21/control_header';
 
 export const decoderFullPath = async (path: string): Promise<Cwr> => {
   return new Promise(async (resolve, reject) => {
@@ -130,6 +141,102 @@ export const decoderFullPath = async (path: string): Promise<Cwr> => {
       };
       return resolve(result);
     }
+    return reject('File is not found.');
+  });
+};
+
+export const decodeFullPathMultipleGroup = async (path: string): Promise<CWRDecodeResultModel> => {
+  return new Promise(async (resolve, reject) => {
+    const file: string = fs.readFileSync(path, 'utf-8');
+    const pathArray: string[] = path.split('/');
+    const filename: string = pathArray[pathArray.length - 1];
+
+    if (file && filename) {
+      let result: CWRDecodeResultModel = initialValueCWRDecodeResult;
+      const file_naming: FileNamingV21 | null = await decodeFileNameV21(filename);
+
+      if (!file_naming) {
+        return reject('Invalid file format.');
+      }
+
+      const version: versionAvailable | null = checkVersion(filename);
+      const data: string[] = file.split(/\r?\n/).filter((item) => item);
+
+      if (!version) {
+        return reject('Invalid version.');
+      }
+
+      const isValidFileLevel: boolean = await validationFileLevel(data);
+
+      if (!isValidFileLevel) {
+        return reject(validationMessageEnum.FILELEVEL);
+      }
+
+      const hdrIndexText: number = data.findIndex((d) => {
+        return d.slice(0, 3) === controlRecordEnum.HDR;
+      });
+      const [hdrTag]: string[] = data.splice(hdrIndexText, 1);
+      const hdr: HDRVer21 = await decodeHdrVer21(hdrTag);
+
+      const trlIndexText: number = data.findIndex((d) => {
+        return d.slice(0, 3) === controlRecordEnum.TRL;
+      });
+      const [trlTag]: string[] = data.splice(trlIndexText, 1);
+      const trl: TRLVer21 = await decodeTrlVer21(trlTag);
+
+      const indexGRH: number[] = [];
+      const transactionGroup: string[][] = [];
+      data.map((d, index) => {
+        if (d.slice(0, 3) === controlRecordEnum.GRH) {
+          indexGRH.push(index);
+        }
+      });
+
+      indexGRH.reverse().map((index) => {
+        transactionGroup.unshift(data.splice(index));
+      });
+      const group: GRHDecodeWithTransaction[] = [];
+
+      await Promise.all(
+        transactionGroup.map(async (transactionData) => {
+          const grhIndexText: number = transactionData.findIndex((d) => {
+            return d.slice(0, 3) === controlRecordEnum.GRH;
+          });
+          const [grhTag]: string[] = transactionData.splice(grhIndexText, 1);
+          const detail: GRHVer21 = await decodeGrhVer21(grhTag);
+
+          const grtIndexText: number = transactionData.findIndex((d) => {
+            return d.slice(0, 3) === controlRecordEnum.GRH;
+          });
+          const [grtTag]: string[] = transactionData.splice(grtIndexText, 1);
+          const close_detail: GRTVer21 = await decodeGrtVer21(grtTag);
+
+          const transaction: Transactions[][] = await decodeTransactionsDetailMultipleGroupVer21(transactionData, detail); 
+
+          const result: GRHDecodeWithTransaction = {
+            detail,
+            transaction,
+            close_detail,
+          };
+          group.push(result);
+        }),
+      );
+
+      const { transactions } = result;
+      result = {
+        ...result,
+        filename: { ...file_naming },
+        transactions: {
+          ...transactions,
+          hdr,
+          trl,
+          group,
+        },
+      };
+
+      return resolve(result);
+    }
+
     return reject('File is not found.');
   });
 };

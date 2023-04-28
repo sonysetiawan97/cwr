@@ -34,6 +34,10 @@ export const decodeHdr = async (text: string, version: versionAvailable): Promis
   return null;
 };
 
+export const decodeHdrVer21 = async (text: string): Promise<HDRVer21> => {
+  return await hdrVer21(text);
+};
+
 export const decodeGrh = async (text: string, version: versionAvailable): Promise<GRHVer21 | GRHVer300 | null> => {
   if (version === versionAvailable.v21) {
     return await grhVer21(text);
@@ -44,6 +48,10 @@ export const decodeGrh = async (text: string, version: versionAvailable): Promis
   }
 
   return null;
+};
+
+export const decodeGrhVer21 = async (text: string): Promise<GRHVer21> => {
+  return await grhVer21(text);
 };
 
 export const decodeGrt = async (text: string, version: versionAvailable): Promise<GRTVer21 | GRTVer300 | null> => {
@@ -58,6 +66,10 @@ export const decodeGrt = async (text: string, version: versionAvailable): Promis
   return null;
 };
 
+export const decodeGrtVer21 = async (text: string): Promise<GRTVer21> => {
+  return await grtVer21(text);
+};
+
 export const decodeTrl = async (text: string, version: versionAvailable): Promise<TRLVer21 | TRLVer300 | null> => {
   if (version === versionAvailable.v21) {
     return await trlVer21(text);
@@ -68,6 +80,10 @@ export const decodeTrl = async (text: string, version: versionAvailable): Promis
   }
 
   return null;
+};
+
+export const decodeTrlVer21 = async (text: string): Promise<TRLVer21> => {
+  return await trlVer21(text);
 };
 
 /**
@@ -95,7 +111,7 @@ const hdrVer21 = async (text: string): Promise<HDRVer21> => {
     const name: string = field;
     const start: number = start_char - 1;
     const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
+    const value: string = text.slice(start, end).trim();
     result = {
       ...result,
       [name]: value,
@@ -130,7 +146,7 @@ const hdrVer300 = async (text: string): Promise<HDRVer300> => {
     const name: string = field;
     const start: number = start_char - 1;
     const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
+    const value: string = text.slice(start, end).trim();
     result = {
       ...result,
       [name]: value,
@@ -165,7 +181,7 @@ const grhVer21 = async (text: string): Promise<GRHVer21> => {
     const name: string = field;
     const start: number = start_char - 1;
     const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
+    const value: string = text.slice(start, end).trim();
     result = {
       ...result,
       [name]: value,
@@ -200,7 +216,7 @@ const grhVer300 = async (text: string): Promise<GRHVer300> => {
     const name: string = field;
     const start: number = start_char - 1;
     const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
+    const value: string = text.slice(start, end).trim();
     result = {
       ...result,
       [name]: value,
@@ -235,7 +251,7 @@ const grtVer21 = async (text: string): Promise<GRTVer21> => {
     const name: string = field;
     const start: number = start_char - 1;
     const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
+    const value: string = text.slice(start, end).trim();
     result = {
       ...result,
       [name]: value,
@@ -270,7 +286,7 @@ const grtVer300 = async (text: string): Promise<GRTVer300> => {
     const name: string = field;
     const start: number = start_char - 1;
     const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
+    const value: string = text.slice(start, end).trim();
     result = {
       ...result,
       [name]: value,
@@ -305,7 +321,7 @@ const trlVer21 = async (text: string): Promise<TRLVer21> => {
     const name: string = field;
     const start: number = start_char - 1;
     const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
+    const value: string = text.slice(start, end).trim();
     result = {
       ...result,
       [name]: value,
@@ -340,7 +356,7 @@ const trlVer300 = async (text: string): Promise<TRLVer300> => {
     const name: string = field;
     const start: number = start_char - 1;
     const end: number = end_char - 1;
-    const value: string = text.slice(start, end);
+    const value: string = text.slice(start, end).trim();
     result = {
       ...result,
       [name]: value,
