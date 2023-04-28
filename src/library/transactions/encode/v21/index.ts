@@ -53,8 +53,6 @@ export const encodeTransactionsDetailParent = async (
   const version: versionAvailable = versionAvailable.v21;
   const stacks = await getDataMapperTransactionsVer21(version, group);
 
-  // console.log('STACKS::', stacks.length ? true : false);
-
   const record_prefix = formatRecordPrefix(group, transactionOrder, transactionLineOrder);
 
   detail = {
@@ -66,12 +64,9 @@ export const encodeTransactionsDetailParent = async (
     .map((item) => {
       const { size, field, input_type } = item;
       const text = detail[field];
-      // console.log('FIELD::', field, ' TYPE::', input_type, ' TEXT::', text);
       return formatCheckType(text, size, input_type);
     })
     .join('');
-
-  // console.log('INFO::', result);
 
   return result;
 };
